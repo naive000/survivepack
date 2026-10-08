@@ -109,6 +109,7 @@
 
 ## 改動時要同步的檔案
 
+- 公開 repo `naive000/survivepack` 是匯出產物，不直接在那邊改：本工作區 commit 後跑 `tools/publish/export.sh --push`。公開清單只在該腳本維護（DSH、backlog、審核包、MVP 永不匯出）。
 - 新增、改名 `book/` 章節檔：同步 `book/manifest.json`，再跑 `node tools/check-entries.mjs`，錯誤要清到 0 才能提交。
 - 改性價比檔規則或成本分：同步 `index.html` 的 `COST_W`、`x.ratio` 與頁尾說明，以及上面「性價比檔」那條。
 - 增減口徑：同步 `tools/check-entries.mjs` 的 `LENS`、`index.html` 的口徑 chip 與 `LENS_LABEL`、上面條目格式與判定規則。

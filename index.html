@@ -244,6 +244,25 @@ html.dark .switch .sun{display:none} html.dark .switch .moon{display:block}
 .ln:last-child{margin-bottom:0}
 .xr{color:var(--brand-1);border-bottom:1px dashed currentColor}
 .xr:hover{text-decoration:none;border-bottom-style:solid}
+
+/* 信任區塊：核實日期、法源、來源數固定置頂，比欄位顯眼但不花 */
+.trust{display:flex;flex-wrap:wrap;align-items:center;gap:4px 14px;margin:0 0 12px;padding:7px 12px;border-radius:8px;background:var(--bg-elv);border:1px solid var(--divider);font-size:13px;line-height:1.6;color:var(--t2)}
+.trust .ti{display:inline-flex;align-items:baseline;gap:6px;min-width:0}
+.trust .ti b{font-weight:600;color:var(--t1);font-variant-numeric:tabular-nums}
+.trust .ti+.ti::before{content:"・";color:var(--t3);margin-right:8px;margin-left:-6px}
+.trust .ti.old b{color:var(--yellow-1)}
+.trust a.tsrc{font-weight:600;border-bottom:1px dashed currentColor}
+.trust a.tsrc:hover{text-decoration:none;border-bottom-style:solid}
+/* 收益未判定的卡片：證據等級徽章補位，並附一句說明 */
+.badge.unk{background:transparent;color:var(--t3);font-weight:500;padding:0 2px}
+/* 待專業審核 */
+.badge.review{background:var(--yellow-soft);color:var(--yellow-1);flex:none;align-self:center;margin-top:2px}
+.rvhl{background:var(--yellow-soft);border-radius:4px;padding:1px 6px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.rvhl strong{color:var(--yellow-1)}
+.share{flex:none;align-self:flex-start;margin-top:3px;border:1px solid var(--divider);background:var(--bg-elv);color:var(--t2);border-radius:6px;padding:0 10px;font-size:12px;line-height:22px;font-weight:500;transition:all .2s;white-space:nowrap}
+.share:hover{border-color:var(--brand-1);color:var(--brand-1)}
+.share.ok{border-color:var(--green-1);color:var(--green-1)}
+.gt-note{font-size:12px;color:var(--t3);line-height:1.6;margin:6px 0 0}
 </style>
 </head>
 <body>
@@ -284,6 +303,7 @@ html.dark .switch .sun{display:none} html.dark .switch .moon{display:block}
       <button class="chip" data-v="高" aria-pressed="false">高</button>
       <button class="chip" data-v="一般" aria-pressed="false">一般</button>
     </div>
+    <p class="gt-note">收益量級未判定的條目不列入性價比篩選，請改用證據等級篩選。</p>
   </div>
   <div class="group">
     <div class="gt">換回什麼 <small>口徑，不跨口徑比較</small></div>
@@ -329,6 +349,11 @@ html.dark .switch .sun{display:none} html.dark .switch .moon{display:block}
   </div>
   <div class="group">
     <label class="toggle"><input type="checkbox" id="f-dispute"> 只看標了爭議的</label>
+    <div class="gt" style="margin-top:10px">專業審核 <small>備註標「待專業審核」</small></div>
+    <div class="chips" data-dim="review">
+      <button class="chip" data-v="only" aria-pressed="false">只看待專業審核</button>
+      <button class="chip" data-v="hide" aria-pressed="false">隱藏待專業審核</button>
+    </div>
     <button class="reset" id="reset">清空篩選</button>
   </div>
   <div class="hint">
@@ -418,6 +443,7 @@ function parseChapter(md, file, order){
   sec.entries.forEach((x, i) => {
     x.id = x.meta.id || ''; x.seq = i;
     x.dispute = /^爭議/.test(x.note);
+    x.review = /待專業審核/.test(x.note);
     x.disputeType = ((/^爭議（([^）]+)）/.exec(x.note) || [])[1]) || '';
     x.cs = (COST_W.money[x.money] ?? 0) + (COST_W.time[x.time] ?? 0) + (COST_W.will[x.will] ?? 0);
     x.ratio = x.level === '大' ? (x.cs === 0 ? '極高' : (x.cs <= 2 ? '高' : '一般'))
@@ -470,6 +496,22 @@ function renderSources(el, cntEl, src){
   }
   el.appendChild(ol);
 }
+// 備註含「待專業審核」：該句高亮，其餘照常分行
+function reviewNote(s){
+  return s.split(/(?<=。)(?=\S)/).map(x => {
+    const h = inline(x.trim());
+    return `<span class="ln">${/待專業審核/.test(x) ? `<span class="rvhl">${h}</span>` : h}</span>`;
+  }).join('');
+}
+const SHARE_BASE = 'https://naive000.github.io/survivepack/e/';
+function copyText(t){
+  if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(t);
+  return new Promise((res, rej) => {
+    const ta = document.createElement('textarea'); ta.value = t; ta.style.cssText = 'position:fixed;opacity:0';
+    document.body.appendChild(ta); ta.select();
+    try { document.execCommand('copy') ? res() : rej(); } catch (e) { rej(e); } ta.remove();
+  });
+}
 function daysSince(iso){
   const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso || ''); if (!m) return null;
   return Math.floor((Date.now() - Date.UTC(+m[1], +m[2]-1, +m[3])) / 864e5);
@@ -492,6 +534,7 @@ function build(){
       const c = document.createElement('article'); c.className = 'card'; c.id = id;
       c.innerHTML = `
         <div class="card-h"><span class="idx">${i+1}</span><h3></h3><a class="anchor" href="#${esc(id)}" aria-label="本條連結">#</a></div>
+        <div class="trust"></div>
         <div class="badges"></div>
         <p class="human"></p>
         <div class="rows">
@@ -499,7 +542,7 @@ function build(){
           <div class="k">收益</div><div class="v gain"></div>
           <div class="k kp">過程成本</div><div class="v proc"></div>
           <div class="k">備註</div><div class="v note"></div>
-          <div class="k">核實</div><div class="v meta"></div>
+          <div class="k kmeta">適用</div><div class="v meta"></div>
         </div>
         <details class="src"><summary>來源<span class="cnt"></span></summary><div class="body"></div></details>`;
       $('h3', c).textContent = e.title;
@@ -507,22 +550,42 @@ function build(){
       $('.cost', c).innerHTML = inline(e.cost);
       $('.gain', c).innerHTML = inline(e.gain);
       $('.proc', c).innerHTML = lines(e.proc);
-      $('.note', c).innerHTML = lines(e.note);
+      $('.note', c).innerHTML = e.review ? reviewNote(e.note) : lines(e.note);
       if (!e.proc) { $('.kp', c).hidden = true; $('.proc', c).hidden = true; }
       const badges = $('.badges', c);
       const add = (cls, text, title) => { const t = document.createElement('span'); t.className = 'badge ' + cls; t.textContent = text; if (title) t.title = title; badges.appendChild(t); };
-      if (e.ratio) add('r' + RATIO_RANK[e.ratio], '性價比 ' + e.ratio, `編輯判斷：由收益量級（${e.level}）和三項成本合成，只在同一口徑（${LENS_LABEL[e.lens]||e.lens}）內可比，與證據等級無關`);
-      add(e.grade || 'C', `證據 ${e.grade || '?'} 級`);
+      if (e.ratio) {
+        add('r' + RATIO_RANK[e.ratio], '性價比 ' + e.ratio, `編輯判斷：由收益量級（${e.level}）和三項成本合成，只在同一口徑（${LENS_LABEL[e.lens]||e.lens}）內可比，與證據等級無關`);
+        add(e.grade || 'C', `證據 ${e.grade || '?'} 級`);
+      } else {
+        // 收益量級未判定：性價比檔的位置改放證據等級，並說明為什麼沒有檔位
+        add(e.grade || 'C', `證據 ${e.grade || '?'} 級`, '收益量級未判定，依證據等級參考');
+        add('unk', '收益量級未判定，依證據等級參考');
+      }
       if (e.lens) add('plain', LENS_LABEL[e.lens] || e.lens);
       for (const d of ['money','time','will']) if (e[d]) add('plain', LABEL[d][e[d]] || e[d]);
       if (e.dispute) add('danger', e.disputeType ? '爭議・' + e.disputeType : '爭議', DISPUTE_HELP[e.disputeType] || '備註裡有反方意見或證據衝突，請看備註');
       const age = daysSince(e.meta['核實日期']);
       if (age !== null && age > REVERIFY_DAYS) add('warn', `核實已 ${age} 天`, '核實日期距今已久，法規與金額可能變動，請對照來源');
-      const mt = [`核實日期 ${e.meta['核實日期'] || '未標'}`, `適用 ${e.meta['適用地區'] || '未標'}`];
-      if (e.meta['法源條號']) mt.push(`法源：${e.meta['法源條號']}`);
+      const mt = [e.meta['適用地區'] || '未標'];
       if (e.meta['失效條件']) mt.push(`何時失效：${e.meta['失效條件']}`);
       $('.meta', c).innerHTML = mt.map(inline).join('<br>');
       renderSources($('.src .body', c), $('.src .cnt', c), e.src);
+      // 信任區塊：核實日期・法源・來源 N 個
+      const nSrc = c.querySelectorAll('.src .body li').length;
+      const trust = $('.trust', c), ti = (html, cls) => { const s = document.createElement('span'); s.className = 'ti' + (cls ? ' ' + cls : ''); s.innerHTML = html; trust.appendChild(s); };
+      ti(`核實日期 <b>${esc(e.meta['核實日期'] || '未標')}</b>`, age !== null && age > REVERIFY_DAYS ? 'old' : '');
+      if (e.meta['法源條號'] && !/^(無|—|-)$/.test(e.meta['法源條號'])) ti(`法源：<b>${esc(e.meta['法源條號'])}</b>`);
+      ti(`<a class="tsrc" href="#" data-src="${esc(id)}">來源 ${nSrc} 個</a>`);
+      if (e.review) {
+        const rb = document.createElement('span'); rb.className = 'badge review'; rb.textContent = '待專業審核';
+        rb.title = '此條尚未經專業人員審核，請對照來源原文，個案請洽專業人員';
+        $('h3', c).after(rb);
+      }
+      if (e.id) {
+        const sh = document.createElement('button'); sh.className = 'share'; sh.type = 'button'; sh.dataset.share = e.id; sh.textContent = '分享';
+        sh.setAttribute('aria-label', '複製本條公開網址'); $('.anchor', c).before(sh);
+      }
       block.appendChild(c);
       CARDS.push({ e, el:c, si, id });
     });
@@ -533,7 +596,7 @@ function build(){
 }
 
 /* ---------- 篩選 ---------- */
-const DIMS = ['ratio','lens','grade','money','time','will'];
+const DIMS = ['ratio','lens','grade','money','time','will','review'];
 const state = { q:'', sec:'', dispute:false }; DIMS.forEach(d => state[d] = new Set());
 function readUrl(){
   const p = new URLSearchParams(location.search);
@@ -561,6 +624,8 @@ function match(c){
   if (state.time.size && !state.time.has(e.time)) return false;
   if (state.will.size && !state.will.has(e.will)) return false;
   if (state.dispute && !e.dispute) return false;
+  if (state.review.has('only') && !e.review) return false;
+  if (state.review.has('hide') && e.review) return false;
   const terms = state.q.toLowerCase().split(/\s+/).filter(Boolean);
   return terms.every(t => e.hay.includes(t));
 }
@@ -572,6 +637,18 @@ function apply(){
   syncControls(); writeUrl();
 }
 function resetAll(){ state.q = ''; state.sec = ''; state.dispute = false; DIMS.forEach(d => state[d].clear()); apply(); }
+// #q=關鍵字：開頁自動帶入搜尋（落地頁情境入口用）。與 #<條目id> 的定位並存：只有 #q= 開頭才當搜尋
+function hashQuery(){
+  const m = /^#q=(.*)$/.exec(location.hash); if (!m) return null;
+  try { return decodeURIComponent(m[1].replace(/\+/g, ' ')).trim(); } catch (e) { return m[1].trim(); }
+}
+function applyHashQuery(){
+  const q = hashQuery(); if (q === null) return false;
+  state.q = q; state.sec = ''; state.dispute = false; DIMS.forEach(d => state[d].clear());
+  history.replaceState(null, '', location.pathname);
+  apply(); window.scrollTo({ top:0 });
+  return true;
+}
 function goTo(id){
   const c = CARDS.find(x => x.id === id); if (!c) return;
   if (c.el.hidden) resetAll();
@@ -581,7 +658,21 @@ function goTo(id){
 function wire(){
   document.addEventListener('click', ev => {
     const chip = ev.target.closest('[data-dim] [data-v]');
-    if (chip) { const set = state[chip.parentElement.dataset.dim], v = chip.dataset.v; set.has(v) ? set.delete(v) : set.add(v); apply(); return; }
+    if (chip) {
+      const dim = chip.parentElement.dataset.dim, set = state[dim], v = chip.dataset.v;
+      const was = set.has(v); if (dim === 'review') set.clear();   // 只看／隱藏互斥
+      if (!was) set.add(v); else set.delete(v);
+      apply(); return;
+    }
+    const sh = ev.target.closest('button[data-share]');
+    if (sh) {
+      const url = SHARE_BASE + sh.dataset.share + '/';
+      copyText(url).then(() => { sh.textContent = '已複製'; sh.classList.add('ok'); setTimeout(() => { sh.textContent = '分享'; sh.classList.remove('ok'); }, 1600); },
+                         () => { window.prompt('複製這條的公開網址', url); });
+      return;
+    }
+    const ts = ev.target.closest('a[data-src]');
+    if (ts) { ev.preventDefault(); const d = ts.closest('.card').querySelector('details.src'); d.open = true; d.scrollIntoView({ block:'center' }); return; }
     const sl = ev.target.closest('#f-sec .sec-link');
     if (sl) { state.sec = sl.dataset.sec; apply(); closeSide(); window.scrollTo({top:0}); return; }
     const xr = ev.target.closest('a[data-go]');
@@ -603,7 +694,7 @@ function wire(){
     if (ev.key === '/' && !/INPUT|TEXTAREA/.test(document.activeElement.tagName)) { ev.preventDefault(); $('#q').focus(); }
     if (ev.key === 'Escape') { closeSide(); if (document.activeElement === $('#q')) $('#q').blur(); }
   });
-  addEventListener('hashchange', () => { const id = decodeURIComponent(location.hash.slice(1)); if (id) goTo(id); });
+  addEventListener('hashchange', () => { if (applyHashQuery()) return; const id = decodeURIComponent(location.hash.slice(1)); if (id) goTo(id); });
 }
 
 /* ---------- 啟動 ---------- */
@@ -619,7 +710,7 @@ function wire(){
     SECTIONS = mds.map((md, i) => parseChapter(md, man.chapters[i], i)).filter(s => s.entries.length);
     SECTIONS.forEach(s => s.entries.forEach(e => e.id && IDS.add(e.id)));
     readUrl(); build(); wire(); apply();
-    const id = decodeURIComponent(location.hash.slice(1)); if (id) goTo(id);
+    if (!applyHashQuery()) { const id = decodeURIComponent(location.hash.slice(1)); if (id) goTo(id); }
   } catch (err) {
     status.innerHTML = `讀取正文失敗（${esc(String(err.message))}）。<br>用瀏覽器直接開檔案讀不到，請在專案資料夾執行 <code>python3 -m http.server</code> 再開 <code>http://localhost:8000</code>。`;
   }

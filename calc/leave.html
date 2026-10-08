@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="zh-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>算一下你今年有幾天特休｜台灣生存包</title>
+<meta name="description" content="輸入到職日，試算勞動基準法第38條的特別休假天數、下一次增加的日期，以及沒休完的特休要折算多少工資。每個數字附條號與算式。">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://naive000.github.io/survivepack/calc/leave.html">
+<meta name="theme-color" content="#3451b2" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1b1b1f" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%233451b2'/%3E%3Cpath d='M17 33l10 11 20-24' fill='none' stroke='white' stroke-width='7' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:site_name" content="台灣生存包">
+<meta property="og:title" content="算一下你今年有幾天特休｜台灣生存包">
+<meta property="og:description" content="輸入到職日，看你現在有幾天特休、下次哪天增加，沒休完的特休折算多少工資，每個數字附條號與算式。">
+<meta property="og:url" content="https://naive000.github.io/survivepack/calc/leave.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="算一下你今年有幾天特休｜台灣生存包">
+<meta name="twitter:description" content="輸入到職日，看你現在有幾天特休、下次哪天增加，沒休完的特休折算多少工資，每個數字附條號與算式。">
+<script>(function(){try{var s=localStorage.getItem('theme');var d=s?s==='dark':matchMedia('(prefers-color-scheme: dark)').matches;if(d)document.documentElement.classList.add('dark')}catch(e){}})();</script>
+<style>
+:root{--bg:#ffffff;--bg-alt:#f6f6f7;--bg-soft:#f6f6f7;--bg-mute:#f1f1f2;--bg-elv:#ffffff;--divider:#e2e2e3;
+--t1:rgba(60,60,67,1);--t2:rgba(60,60,67,.78);--t3:rgba(60,60,67,.56);
+--brand-1:#3451b2;--brand-2:#3a5ccc;--brand-3:#5672cd;--brand-soft:rgba(100,108,255,.14);
+--green-1:#18794e;--green-soft:rgba(16,185,129,.14);--yellow-1:#915930;--yellow-soft:rgba(234,179,8,.14);
+--red-1:#b8272c;--red-soft:rgba(244,63,94,.14);--gray-1:#565a5f;--gray-soft:rgba(142,150,170,.14);
+--shadow:0 1px 2px rgba(0,0,0,.04),0 1px 2px rgba(0,0,0,.06);
+--font:"Inter",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"PingFang TC","Hiragino Sans","Microsoft JhengHei","Noto Sans TC",sans-serif;
+--mono:ui-monospace,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
+--nav-h:56px;color-scheme:light}
+html.dark{--bg:#1b1b1f;--bg-alt:#161618;--bg-soft:#202127;--bg-mute:#2b2b2f;--bg-elv:#202127;--divider:#2e2e32;
+--t1:rgba(255,255,245,.86);--t2:rgba(235,235,245,.6);--t3:rgba(235,235,245,.38);
+--brand-1:#a8b1ff;--brand-2:#5c73e7;--brand-3:#3e63dd;--brand-soft:rgba(100,108,255,.16);
+--green-1:#3dd68c;--green-soft:rgba(16,185,129,.16);--yellow-1:#f9b44e;--yellow-soft:rgba(234,179,8,.16);
+--red-1:#f66f81;--red-soft:rgba(244,63,94,.16);--gray-1:#a4a8ae;--gray-soft:rgba(142,150,170,.16);
+--shadow:0 1px 2px rgba(0,0,0,.3);color-scheme:dark}
+*{box-sizing:border-box}
+html{scrollbar-gutter:stable}
+body{margin:0;background:var(--bg);color:var(--t1);font:15px/1.75 var(--font);-webkit-font-smoothing:antialiased}
+a{color:var(--brand-1);text-decoration:none}
+a:hover{color:var(--brand-2);text-decoration:underline;text-underline-offset:2px}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+:focus-visible{outline:2px solid var(--brand-1);outline-offset:2px;border-radius:4px}
+[hidden]{display:none!important}
+.nav{position:sticky;top:0;z-index:30;height:var(--nav-h);background:var(--bg);border-bottom:1px solid var(--divider)}
+.nav-in{max-width:820px;height:100%;margin:0 auto;padding:0 20px;display:flex;align-items:center;gap:12px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:600;font-size:16px;color:var(--t1);white-space:nowrap}
+.brand:hover{text-decoration:none;color:var(--t1)}
+.logo{width:24px;height:24px;border-radius:6px;background:linear-gradient(135deg,var(--brand-3),var(--brand-1));display:grid;place-items:center;color:#fff}
+.logo svg{width:15px;height:15px}
+.slogan{color:var(--t3);font-size:13px;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.switch{position:relative;width:40px;height:22px;border-radius:11px;border:1px solid var(--divider);background:var(--bg-mute);flex:none}
+.switch .knob{position:absolute;top:1px;left:1px;width:18px;height:18px;border-radius:50%;background:var(--bg-elv);box-shadow:var(--shadow);transition:transform .25s}
+html.dark .switch .knob{transform:translateX(18px)}
+.doc{max-width:820px;margin:0 auto;padding:24px 20px 96px}
+.crumb{font-size:13px;color:var(--t3);margin-bottom:14px}
+.crumb a{color:var(--t2)}
+h1{margin:0 0 10px;font-size:26px;line-height:1.4;font-weight:700;letter-spacing:-.01em}
+.lead{margin:0 0 18px;padding:10px 14px;border-left:2px solid var(--brand-1);background:var(--brand-soft);border-radius:0 6px 6px 0;font-size:15px;line-height:1.8}
+form{display:grid;gap:14px;margin:0 0 20px;padding:16px;border:1px solid var(--divider);border-radius:10px;background:var(--bg-alt)}
+.f label{display:block;font-size:14px;font-weight:600;margin-bottom:4px}
+.f .hint{display:block;font-size:12.5px;color:var(--t2);margin-top:4px;line-height:1.6}
+.f input,.f select{width:100%;height:44px;padding:0 12px;border-radius:8px;border:1px solid var(--divider);background:var(--bg);color:var(--t1);font:inherit;font-size:16px}
+.f input:focus,.f select:focus{outline:0;border-color:var(--brand-1)}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.err{margin:0 0 16px;padding:10px 14px;border:1px solid var(--red-1);border-radius:8px;background:var(--red-soft);color:var(--red-1);font-size:14px}
+.res h2{margin:22px 0 10px;font-size:17px}
+.item{padding:12px 14px;border:1px solid var(--divider);border-radius:10px;margin-bottom:10px;background:var(--bg)}
+.item .k{font-size:13px;color:var(--t2);font-weight:600}
+.item .v{font-size:22px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1.5}
+.item.total{border-color:var(--brand-1);background:var(--brand-soft)}
+.item .how{font-size:13px;color:var(--t2);line-height:1.7;margin-top:2px}
+.item .how b{font-weight:600;color:var(--t1)}
+.law{display:inline-block;margin-left:2px;padding:0 7px;border-radius:9px;background:var(--green-soft);color:var(--green-1);font-size:12px;font-weight:600;line-height:19px;white-space:nowrap}
+.law.tool{background:var(--yellow-soft);color:var(--yellow-1)}
+.warn{padding:10px 14px;border-radius:8px;background:var(--yellow-soft);color:var(--t1);font-size:13.5px;line-height:1.7;margin-bottom:10px}
+.note{font-size:13.5px;color:var(--t2);line-height:1.75}
+.note li{margin-bottom:4px}
+.links{margin-top:22px;padding-top:16px;border-top:1px solid var(--divider);font-size:14px}
+.links h2{margin:0 0 8px;font-size:15px}
+.links ul{margin:0;padding-left:18px}
+.disclaimer{margin:24px 0 16px;padding:10px 14px;border:1px solid var(--divider);border-radius:8px;background:var(--bg-alt);color:var(--t2);font-size:13px;line-height:1.7}
+.foot{margin-top:20px;padding-top:16px;border-top:1px solid var(--divider);color:var(--t3);font-size:13px;line-height:1.7}
+.foot p{margin:0 0 8px}
+@media (max-width:640px){
+  .doc{padding:18px 16px 72px}.nav-in{padding:0 16px}
+  h1{font-size:21px}.row2{grid-template-columns:1fr}
+  form{padding:14px}.item .v{font-size:20px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+table{width:100%;border-collapse:collapse;font-size:14px;margin:4px 0 10px}
+th,td{text-align:left;padding:7px 6px;white-space:nowrap;border-bottom:1px solid var(--divider);font-variant-numeric:tabular-nums}
+th{font-size:12.5px;color:var(--t2);font-weight:600}
+tr.on td{background:var(--brand-soft);font-weight:600}
+tr.past td{color:var(--t3)}
+</style>
+</head>
+<body>
+<header class="nav"><div class="nav-in">
+  <a class="brand" href="../"><span class="logo" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 12.5l4 4 8-9.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>台灣生存包</span></a>
+  <span class="slogan">遇到事就打開</span>
+  <button class="switch" id="theme" aria-label="切換深色模式" title="切換深色模式"><span class="knob"></span></button>
+</div></header>
+<main class="doc">
+<nav class="crumb" aria-label="導覽"><a href="../">台灣生存包</a> › 試算 › 特別休假</nav>
+<h1>特別休假天數試算</h1>
+<p class="lead">輸入到職日，看你現在有幾天特休、下次哪天增加；沒休完的天數，也能估要折算多少工資。</p>
+
+<form id="f" novalidate>
+  <div class="row2">
+    <div class="f"><label for="start">到職日</label><input id="start" type="date" required></div>
+    <div class="f"><label for="ref">算到哪一天</label><input id="ref" type="date"><span class="hint">預設是今天。</span></div>
+  </div>
+  <div class="row2">
+    <div class="f"><label for="left">沒休完的特休（日，選填）</label><input id="left" type="number" inputmode="decimal" min="0" step="0.5" placeholder="例如 5"></div>
+    <div class="f"><label for="mw">最近一個月正常工作時間的工資（月薪，選填）</label><input id="mw" type="number" inputmode="numeric" min="0" step="1" placeholder="例如 36000"></div>
+  </div>
+</form>
+
+<div id="out" class="res" aria-live="polite"></div>
+
+<section class="note">
+  <h2 style="font-size:15px;margin:22px 0 6px">這個工具沒算的事</h2>
+  <ul>
+    <li>本工具照「從到職日起算，每一週年」列天數。施行細則第24條也允許勞雇協商改用曆年、會計年度或約定年度；改了以後每段期間各有幾天，條文沒寫怎麼換算，本工具不算。</li>
+    <li>年資只算在同一雇主或事業單位繼續工作的期間（第38條第1項、施行細則第5條）。中間離職再回來的情形，本工具不判斷。</li>
+    <li>未休工資只算按月計酬的情形。不是按月計酬的，一日工資是年度終結或契約終止前一日正常工作時間所得的工資（施行細則第24條之1）。</li>
+  </ul>
+</section>
+
+<section class="links">
+  <h2>相關條目</h2>
+  <ul>
+    <li><a href="../e/tw-labor-annual-leave/">確認特別休假天數，沒休完要換成工資</a></li>
+  </ul>
+</section>
+
+<div class="disclaimer">本站為一般資訊整理，不構成法律或醫療建議，個案請洽專業人員。本頁只是試算，不代表雇主實際應給的天數或金額。</div>
+<footer class="foot">
+  <p>核實日期 2026-10-08。法源：<a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=N0030001" target="_blank" rel="noopener">《勞動基準法》</a>第38條、第39條；<a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=N0030002" target="_blank" rel="noopener">《勞動基準法施行細則》</a>第5條、第24條、第24條之1。逐條核對紀錄見 <a href="../docs/verification/calc.md">docs/verification/calc.md</a>。</p>
+  <p>法規條文取自全國法規資料庫 Open API（資料日期 2026-09-18），依「政府資料開放授權條款－第 1 版」使用。</p>
+  <p><a href="../">台灣生存包</a>（遇到事就打開）。內容採 <a href="https://creativecommons.org/licenses/by-nc/4.0/deed.zh-Hant" target="_blank" rel="noopener">CC BY-NC 4.0</a>，程式碼 MIT。本頁不收集你輸入的任何資料，計算全在你的瀏覽器裡完成。</p>
+</footer>
+</main>
+<script>
+(function(){
+var b=document.getElementById('theme');
+b.addEventListener('click',function(){var d=document.documentElement.classList.toggle('dark');try{localStorage.setItem('theme',d?'dark':'light')}catch(e){}});
+
+function $(id){return document.getElementById(id)}
+function parse(s){
+  if(!/^\d{4}-\d{2}-\d{2}$/.test(s||''))return null;
+  var p=s.split('-').map(Number), t=Date.UTC(p[0],p[1]-1,p[2]);
+  return new Date(t).getUTCMonth()===p[1]-1?t:null;
+}
+function iso(t){return new Date(t).toISOString().slice(0,10)}
+function addMonths(t,n){
+  var d=new Date(t), y=d.getUTCFullYear(), m=d.getUTCMonth()+n, day=d.getUTCDate();
+  var last=new Date(Date.UTC(y,m+1,0)).getUTCDate();
+  return Date.UTC(y,m,Math.min(day,last));
+}
+function money(n){return '新臺幣 '+Math.round(n).toLocaleString('zh-TW')+' 元'}
+function f2(n){return (Math.round(n*100)/100).toLocaleString('zh-TW')}
+function law(t,tool){return '<span class="law'+(tool?' tool':'')+'">'+t+'</span>'}
+function item(k,val,how,cls){return '<div class="item'+(cls?' '+cls:'')+'"><div class="k">'+k+'</div><div class="v">'+val+'</div><div class="how">'+how+'</div></div>'}
+
+// 第38條第1項：滿 n 個月時取得幾日，以及對應第幾款
+function rule(months){
+  if(months<6)return null;
+  if(months<12)return {d:3,k:'第1款'};
+  var y=Math.floor(months/12);
+  if(y<2)return {d:7,k:'第2款'};
+  if(y<3)return {d:10,k:'第3款'};
+  if(y<5)return {d:14,k:'第4款'};
+  if(y<10)return {d:15,k:'第5款'};
+  return {d:Math.min(30,15+(y-9)),k:'第6款'};
+}
+// 各個取得特休的時點：滿 6 個月、滿 1 年、之後每滿一週年
+function milestones(start,maxYears){
+  var a=[{m:6}];
+  for(var y=1;y<=maxYears;y++)a.push({m:y*12});
+  return a.map(function(x){var r=rule(x.m);return {m:x.m,t:addMonths(start,x.m),d:r.d,k:r.k}});
+}
+function lab(m){return m===6?'滿 6 個月':'滿 '+(m/12)+' 年'}
+
+(function(){var n=new Date();$('ref').value=n.getFullYear()+'-'+String(n.getMonth()+1).padStart(2,'0')+'-'+String(n.getDate()).padStart(2,'0')})();
+
+function render(){
+  var out=$('out'), st=parse($('start').value), ref=parse($('ref').value);
+  if(st===null||ref===null){out.innerHTML='<p class="note">填好到職日，結果會出現在這裡。</p>';return}
+  if(ref<st){out.innerHTML='<p class="err">「算到哪一天」早於到職日，請再確認。</p>';return}
+  var ms=milestones(st,Math.max(26,new Date(ref).getUTCFullYear()-new Date(st).getUTCFullYear()+2)), cur=null, next=null;
+  for(var i=0;i<ms.length;i++){if(ms[i].t<=ref)cur=ms[i];else{next=ms[i];break}}
+  var h='<h2>你現在的特休</h2>';
+  if(!cur){
+    h+=item('目前的特別休假','還沒有','到職未滿六個月。繼續工作滿六個月以上一年未滿，給三日 '+law('勞基法第38條第1項第1款')+'。<br>你在 <b>'+iso(ms[0].t)+'</b> 滿六個月（到職日加 6 個月）'+law('本工具設定',1)+'。');
+  }else{
+    var range=next?iso(cur.t)+' 到 '+iso(next.t-864e5):iso(cur.t)+' 以後';
+    var how=lab(cur.m)+'（'+iso(cur.t)+'）起，這一段 '+range+' 有 '+cur.d+' 日 '+law('勞基法第38條第1項'+cur.k)+'。';
+    if(cur.k==='第6款')how+='<br>十年以上每一年加給一日，加至三十日為止。本工具讀成：滿 10 年 16 日，滿 11 年 17 日，到滿 24 年 30 日 '+law('本工具設定',1)+'。';
+    if(cur.m===6)how+='<br>這 3 日的行使期間，是取得權利後的六個月 '+law('施行細則第24條第2項第1款但書')+'。';
+    h+=item('目前這一段的特別休假',cur.d+' 日',how,'total');
+  }
+  if(next){
+    h+=item('下一段特休','滿 '+(next.m===6?'6 個月':(next.m/12)+' 年')+'：'+iso(next.t)+' 起 '+next.d+' 日',
+      '依 '+law('勞基法第38條第1項'+next.k)+'。取得特休權利後，雇主要在 30 日內告知你排定特休 '+law('勞基法第38條第3項')+' '+law('施行細則第24條第3項')+'。');
+  }
+  h+='<p class="note">特休日期由你排定 '+law('勞基法第38條第2項')+'。年資自受僱當日起算 '+law('施行細則第5條')+'；「滿 N 個月」本工具以到職日加 N 個月的那天計 '+law('本工具設定',1)+'。</p>';
+
+  // 時間表
+  h+='<h2>你的特休時間表</h2><table><thead><tr><th>年資</th><th>從哪天起</th><th>天數</th><th>第38條第1項</th></tr></thead><tbody>';
+  var ci=cur?ms.indexOf(cur):-1, lo=Math.max(0,ci-2), shown=ms.slice(lo,Math.min(ms.length,Math.max(ci,0)+5));
+  shown.forEach(function(x){
+    var cls=cur&&x.m===cur.m?'on':(x.t<=ref?'past':'');
+    h+='<tr class="'+cls+'"><td>'+lab(x.m)+'</td><td>'+iso(x.t)+'</td><td>'+x.d+' 日</td><td>'+x.k+'</td></tr>';
+  });
+  h+='</tbody></table><p class="note">表只列你目前前後幾段。滿 24 年起每年 30 日，以後不再增加。</p>';
+
+  // 未休工資
+  var left=parseFloat($('left').value), mw=parseFloat($('mw').value);
+  if(left>0&&mw>0){
+    var day=mw/30;
+    h+='<h2>沒休完的特休折算工資</h2>';
+    h+=item('未休特休工資',money(left*day),
+      '年度終結或契約終止時沒休完的天數，雇主要發給工資 '+law('勞基法第38條第4項')+'。<br>'+
+      '按月計酬的，一日工資是年度終結或契約終止前最近一個月正常工作時間所得的工資除以三十 '+law('施行細則第24條之1第2項第1款')+'。<br>'+
+      '算式：'+mw.toLocaleString('zh-TW')+' ÷ 30 = '+f2(day)+' 元／日；'+f2(day)+' × '+left+' 日。');
+    h+='<p class="note">年度終結的，在約定的工資給付日，或年度終結後三十日內發給 '+law('施行細則第24條之1第2項第2款')+'。協商遞延到下一年度的，下一年度終結或契約終止時仍沒休完，才發工資 '+law('勞基法第38條第4項但書')+'。</p>';
+  }else if(left>0||mw>0){
+    h+='<p class="note">要算未休特休工資，請同時填「沒休完的特休」和「最近一個月正常工作時間的工資」。</p>';
+  }
+  out.innerHTML=h;
+}
+['start','ref','left','mw'].forEach(function(id){$(id).addEventListener('input',render);$(id).addEventListener('change',render)});
+$('f').addEventListener('submit',function(e){e.preventDefault()});
+render();
+})();
+</script>
+</body>
+</html>
