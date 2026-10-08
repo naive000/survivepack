@@ -1,0 +1,24 @@
+# 核實紀錄：tw-emergency-poisoning-first-aid
+
+進 `book/`：2026-10-01（DSH 批次，題目編號 bk-096）。
+
+## 自行核對
+
+- 條文：全國法規資料庫 Open API 本機檔，逐字比對（`verify_r2.py`），全部一致、沒有不符。引用的法規與條號：無。
+- 草稿裡出現的條號都有對應引文；每個數字（金額、天數、年齡、月數）由腳本比對是否出現在引文，少數未出現者（民國年換算、一次、算例等）已人工看過。
+- 網頁與論文引文（重新抓取或重開，逐字比對）：
+- https://www.cha.gov.tw/cp-89-1469-096d9-1.html（頁面日期 2025-10-03）：curl 重新抓取並逐字比對（符合 80% 以上）
+- https://www.fda.gov.tw/tc/includes/GetFile.ashx?id=f638382287424457705（頁面日期 2023-12-15）：curl 重新抓取並逐字比對（符合 80% 以上）
+- https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=32782094&rettype=abstract&retmode=text（頁面日期 2020-11-01）：NCBI E-utilities 摘要比對
+
+## 產出方式
+
+- 由 DeepSeek（dsh headless）產出卷宗與草稿，Claude 用上述腳本核對引文，再讀過草稿全文才進 book/。
+
+## 已知限制與「本條不寫」（agent 列出）
+
+- 毒藥物防治諮詢中心：可提供全天候毒藥物諮詢，但其網站以 curl 讀取會被拒絕，且電話不在 hotlines.md 白名單，未寫入條目。
+- 誤食後催吐與否的直接人體對照研究：查無，未寫入；收益標「?」是因為查無帶數字的死亡降幅。
+- 就醫費用與給付：本條未引，未寫入。
+
+- 重驗：條目「失效條件」所列法規或公告修正就要重核；金額與年度數字每年重驗。

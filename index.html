@@ -1,0 +1,629 @@
+<!doctype html>
+<html lang="zh-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>台灣生存包</title>
+<meta name="description" content="遇到事就打開。按性價比排序的台灣生活法規查詢工具：每條寫明成本、收益、證據等級，附官方原文出處與核實日期。涵蓋健保看病、勞動權益、詐騙防範與法律紅線。">
+<meta name="robots" content="index,follow">
+<meta name="theme-color" content="#3451b2" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1b1b1f" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%233451b2'/%3E%3Cpath d='M17 33l10 11 20-24' fill='none' stroke='white' stroke-width='7' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:title" content="台灣生存包">
+<meta property="og:description" content="遇到事就打開：台灣生活法規的查詢工具，每條附官方原文、法源條號與核實日期，按性價比排序。">
+<script>(function(){try{var s=localStorage.getItem('theme');var d=s?s==='dark':matchMedia('(prefers-color-scheme: dark)').matches;if(d)document.documentElement.classList.add('dark')}catch(e){}})();</script>
+<style>
+
+:root{
+  --bg:#ffffff; --bg-alt:#f6f6f7; --bg-soft:#f6f6f7; --bg-mute:#f1f1f2; --bg-elv:#ffffff;
+  --divider:#e2e2e3; --gutter:#e2e2e3;
+  --t1:rgba(60,60,67,1); --t2:rgba(60,60,67,.78); --t3:rgba(60,60,67,.56);
+  --brand-1:#3451b2; --brand-2:#3a5ccc; --brand-3:#5672cd; --brand-soft:rgba(100,108,255,.14);
+  --green-1:#18794e; --green-soft:rgba(16,185,129,.14);
+  --yellow-1:#915930; --yellow-soft:rgba(234,179,8,.14);
+  --red-1:#b8272c; --red-soft:rgba(244,63,94,.14);
+  --gray-1:#565a5f; --gray-soft:rgba(142,150,170,.14);
+  --mark:rgba(234,179,8,.32);
+  --shadow:0 1px 2px rgba(0,0,0,.04),0 1px 2px rgba(0,0,0,.06);
+  --font:"Inter",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"PingFang TC","Hiragino Sans","Microsoft JhengHei","Noto Sans TC",sans-serif;
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
+  --nav-h:64px; --side-w:272px;
+  color-scheme:light;
+}
+html.dark{
+  --bg:#1b1b1f; --bg-alt:#161618; --bg-soft:#202127; --bg-mute:#2b2b2f; --bg-elv:#202127;
+  --divider:#2e2e32; --gutter:#000000;
+  --t1:rgba(255,255,245,.86); --t2:rgba(235,235,245,.6); --t3:rgba(235,235,245,.38);
+  --brand-1:#a8b1ff; --brand-2:#5c73e7; --brand-3:#3e63dd; --brand-soft:rgba(100,108,255,.16);
+  --green-1:#3dd68c; --green-soft:rgba(16,185,129,.16);
+  --yellow-1:#f9b44e; --yellow-soft:rgba(234,179,8,.16);
+  --red-1:#f66f81; --red-soft:rgba(244,63,94,.16);
+  --gray-1:#a4a8ae; --gray-soft:rgba(142,150,170,.16);
+  --mark:rgba(234,179,8,.28);
+  --shadow:0 1px 2px rgba(0,0,0,.3);
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-padding-top:calc(var(--nav-h) + 16px)}
+/* 彈窗開啟時 body 設了 overflow:hidden，捲軸一沒，頁面變寬 15px、卡片重新折行，整頁抽一下（2026-10-01 使用者發現）。
+   預留捲軸那條槽位，有沒有捲軸寬度都不變 */
+html{scrollbar-gutter:stable}
+body{margin:0;background:var(--bg);color:var(--t1);font:14px/1.7 var(--font);-webkit-font-smoothing:antialiased}
+a{color:var(--brand-1);text-decoration:none;transition:color .25s}
+a:hover{color:var(--brand-2);text-decoration:underline;text-underline-offset:2px}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+:focus-visible{outline:2px solid var(--brand-1);outline-offset:2px;border-radius:4px}
+mark{background:var(--mark);color:inherit;border-radius:2px;padding:0 1px}
+/* 正文裡的「第 X 條」交叉引用：點一下就地看那條說什麼，不用自己翻過去 */
+.xref{color:var(--brand-1);cursor:pointer;border-bottom:1px dashed currentColor}
+.xref:hover{color:var(--brand-2);border-bottom-style:solid}
+#xref-pop{position:absolute;z-index:80;width:min(430px,calc(100vw - 28px));background:var(--bg-elv);border:1px solid var(--divider);border-radius:10px;box-shadow:var(--shadow);padding:11px 13px;font-size:13.5px;line-height:1.75}
+#xref-pop .xp-h{display:flex;align-items:flex-start;gap:8px;margin-bottom:7px}
+#xref-pop .xp-h b{flex:1;font-weight:600;line-height:1.5}
+#xref-pop .xp-h button{flex:none;border:1px solid var(--divider);background:var(--bg-soft);color:inherit;border-radius:6px;padding:2px 9px;font-size:12px;cursor:pointer;font-family:inherit;white-space:nowrap}
+#xref-pop .xp-h button:hover{border-color:var(--brand-1);color:var(--brand-1)}
+#xref-pop .xp-s{opacity:.62;font-size:12px;margin-bottom:5px}
+#xref-pop .xp-b{max-height:210px;overflow:auto}
+#xref-pop .xp-b+.xp-b{margin-top:8px;padding-top:8px;border-top:1px solid var(--divider)}
+.card.flash{animation:xflash 1.8s ease-out}
+/* 節標題不是卡片，不能套卡片那塊底色：一行標題填上底色像個色塊，也像在說「這一行
+   就是目標」，而整節指路的目標是下面一整節。標題的高亮改走文字色和上沿那條分割線，
+   時長和 .card.flash 一樣，反饋還是同一套 */
+.sec-h.flash{animation:secflash-line 1.8s ease-out}
+.sec-h.flash h2{animation:secflash-text 1.8s ease-out}
+@keyframes secflash-line{0%,35%{border-top-color:var(--brand-1)}100%{border-top-color:var(--divider)}}
+@keyframes secflash-text{0%,35%{color:var(--brand-1)}100%{color:var(--t1)}}
+@keyframes xflash{0%,35%{background:var(--brand-soft)}100%{background:transparent}}
+[hidden]{display:none!important}
+
+/* nav */
+.nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);z-index:30;background:var(--bg);border-bottom:1px solid var(--divider)}
+.nav-in{height:100%;display:flex;align-items:center;gap:16px;padding:0 24px}
+.title{display:flex;align-items:center;gap:10px;font-weight:600;font-size:16px;color:var(--t1);white-space:nowrap}
+.title:hover{text-decoration:none;color:var(--t1)}
+.logo{width:24px;height:24px;border-radius:6px;background:linear-gradient(135deg,var(--brand-3),var(--brand-1));display:grid;place-items:center;color:#fff;font-size:12px;font-weight:700}
+.logo svg{width:15px;height:15px}
+.search{flex:1;max-width:520px;margin-left:auto;position:relative}
+.search input{width:100%;height:40px;padding:0 44px 0 40px;border-radius:8px;border:1px solid transparent;background:var(--bg-alt);color:var(--t1);font:inherit;font-size:14px;transition:border-color .25s,background .25s}
+.search input:hover{border-color:var(--divider)}
+.search input:focus{outline:0;border-color:var(--brand-1);background:var(--bg)}
+.search input::placeholder{color:var(--t3)}
+.search svg{position:absolute;left:12px;top:50%;transform:translateY(-50%);width:18px;height:18px;fill:none;stroke:var(--t3);stroke-width:2;pointer-events:none}
+.search kbd{position:absolute;right:10px;top:50%;transform:translateY(-50%);font:500 11px/1 var(--font);color:var(--t3);border:1px solid var(--divider);border-radius:4px;padding:3px 6px;background:var(--bg-elv);pointer-events:none}
+.nav-r{display:flex;align-items:center;gap:8px}
+.icon-btn{width:36px;height:36px;border-radius:8px;display:grid;place-items:center;color:var(--t2);transition:background .25s,color .25s}
+.icon-btn:hover{background:var(--bg-soft);color:var(--t1)}
+.icon-btn svg{width:20px;height:20px;fill:currentColor}
+.switch{position:relative;width:40px;height:22px;border-radius:11px;border:1px solid var(--divider);background:var(--bg-mute);transition:border-color .25s,background .25s;flex:none;margin-left:8px}
+.switch:hover{border-color:var(--t3)}
+.switch .knob{position:absolute;top:1px;left:1px;width:18px;height:18px;border-radius:50%;background:var(--bg-elv);box-shadow:var(--shadow);transition:transform .25s;display:grid;place-items:center}
+html.dark .switch .knob{transform:translateX(18px)}
+.switch svg{width:12px;height:12px;fill:var(--t2)}
+.switch .sun{display:block} .switch .moon{display:none}
+html.dark .switch .sun{display:none} html.dark .switch .moon{display:block}
+.menu-btn{display:none}
+
+/* sidebar */
+.sidebar{position:fixed;top:var(--nav-h);bottom:0;left:0;width:var(--side-w);background:var(--bg-alt);padding:32px 32px 96px;overflow-y:auto;overscroll-behavior:contain;z-index:20}
+.group{padding-bottom:20px;margin-bottom:20px;border-bottom:1px solid var(--divider)}
+.group:last-of-type{border-bottom:0}
+.gt{font-size:14px;font-weight:700;color:var(--t1);line-height:24px;margin-bottom:4px;display:flex;justify-content:space-between;align-items:baseline}
+.gt small{font-weight:400;font-size:12px;color:var(--t3)}
+.sec-links{display:flex;flex-direction:column}
+.sec-link{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:4px 0;font-size:14px;font-weight:500;color:var(--t2);line-height:24px;text-align:left;transition:color .25s;border-radius:0}
+.sec-link:hover{color:var(--t1)}
+.sec-link[aria-pressed="true"]{color:var(--brand-1)}
+.sec-link i{font-style:normal;font-size:12px;color:var(--t3);font-variant-numeric:tabular-nums}
+.sec-link.all{padding-bottom:8px;margin-bottom:4px;border-bottom:1px solid var(--divider)}
+/* 章節下的條目目錄：只展開選中的那節，沒選節時展開正在讀的那節（issue #38） */
+.toc-sub{display:flex;flex-direction:column;margin:2px 0 8px;border-left:1px solid var(--divider)}
+.toc-sub a{display:flex;gap:6px;padding:3px 0 3px 12px;margin-left:-1px;border-left:1px solid transparent;font-size:13px;line-height:20px;color:var(--t2);text-decoration:none;transition:color .2s}
+.toc-sub a:hover{color:var(--t1);text-decoration:none}
+.toc-sub a i{font-style:normal;flex:none;min-width:1.5em;color:var(--t3);font-variant-numeric:tabular-nums}
+.toc-sub a span{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.toc-sub a.on{color:var(--brand-1);border-left-color:var(--brand-1)}
+.toc-sub a.on i{color:var(--brand-1)}
+.toc-none{margin:0;padding:3px 0 3px 12px;font-size:13px;line-height:20px;color:var(--t3)}
+/* 摺疊箭頭：點它只收起或展開目錄，不切換章節篩選 */
+.sec-link i{margin-left:auto}
+.sec-link .fold{flex:none;align-self:stretch;display:grid;place-items:center;width:24px;margin:-4px -6px -4px 0;border-radius:4px;color:var(--t3);transition:transform .2s,color .2s}
+.sec-link .fold:hover{color:var(--t1);background:var(--bg-mute)}
+.sec-link .fold svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;transform:rotate(-90deg);transition:transform .2s}
+.sec-link.open .fold svg{transform:none}
+.chips{display:flex;flex-wrap:wrap;gap:6px;padding-top:6px}
+.chip{border:1px solid var(--divider);background:var(--bg-elv);color:var(--t2);border-radius:999px;padding:3px 11px;font-size:12px;font-weight:500;line-height:18px;transition:all .2s}
+.chip:hover{border-color:var(--brand-3);color:var(--t1)}
+.chip[aria-pressed="true"]{background:var(--brand-soft);border-color:var(--brand-1);color:var(--brand-1)}
+.toggle{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--t2);padding:4px 0;cursor:pointer;font-weight:500}
+.toggle input{accent-color:var(--brand-1);width:15px;height:15px;margin:0}
+.reset{display:inline-flex;align-items:center;gap:6px;margin-top:8px;padding:6px 14px;border:1px solid var(--divider);border-radius:20px;font-size:13px;font-weight:500;color:var(--t2);background:var(--bg-elv);transition:all .25s}
+.reset:hover{border-color:var(--brand-1);color:var(--brand-1)}
+.doc-links{margin-top:8px;font-size:14px;color:var(--t3)}
+.doc-links a{margin-right:4px}
+.hint{font-size:12px;color:var(--t3);line-height:1.6;margin-top:16px}
+.hint p{margin:4px 0}
+.backdrop{display:none}
+
+/* content */
+.content{padding:calc(var(--nav-h) + 40px) 48px 128px calc(var(--side-w) + 48px)}
+.doc{max-width:900px;margin:0 auto}
+.doc-head{margin-bottom:28px}
+.doc-head h1{font-size:32px;line-height:40px;font-weight:700;letter-spacing:-.02em;margin:0 0 8px}
+.doc-head p{margin:0;color:var(--t2);font-size:16px}
+.doc-head .stat{color:var(--t3);font-size:14px;margin-top:6px}
+.doc-head .stat b{color:var(--brand-1);font-weight:600}
+.sec-block{margin-top:40px}
+.sec-h{display:flex;align-items:baseline;gap:12px;padding-top:24px;border-top:1px solid var(--divider);margin-bottom:8px}
+.sec-h h2{font-size:24px;line-height:32px;font-weight:600;letter-spacing:-.02em;margin:0}
+.sec-h .shown{margin-left:auto;font-size:13px;color:var(--t3);font-variant-numeric:tabular-nums}
+.intro{margin:0 0 12px;color:var(--t2);font-size:14px;max-width:72ch}
+.intro:last-of-type{margin-bottom:20px}
+
+.card{background:var(--bg-soft);border:1px solid transparent;border-radius:12px;padding:22px 24px 18px;margin-bottom:16px;transition:border-color .25s,background .25s;content-visibility:auto;contain-intrinsic-size:300px;contain-intrinsic-size:auto 300px}
+.card:hover{border-color:var(--divider)}
+.card-h{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px}
+.card-h h3{margin:0;font-size:18px;line-height:28px;font-weight:600;letter-spacing:-.01em;flex:1;min-width:0;overflow-wrap:anywhere}
+.card-h .idx{color:var(--t3);font-size:14px;line-height:28px;font-variant-numeric:tabular-nums;min-width:22px}
+.card-h .anchor{opacity:0;color:var(--brand-1);font-size:16px;line-height:28px;font-weight:500;transition:opacity .2s}
+.card:hover .anchor,.anchor:focus-visible{opacity:1}
+.badges{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.badge{display:inline-block;border-radius:10px;padding:0 10px;line-height:20px;font-size:12px;font-weight:600;white-space:nowrap;transform:translateY(0)}
+.badge.tip{background:var(--brand-soft);color:var(--brand-1)}
+.badge.A{background:var(--green-soft);color:var(--green-1)}
+.badge.B{background:var(--yellow-soft);color:var(--yellow-1)}
+.badge.C{background:var(--gray-soft);color:var(--gray-1)}
+.badge.danger{background:var(--red-soft);color:var(--red-1)}
+.badge.warn{background:var(--yellow-soft);color:var(--yellow-1)}
+.badge.plain{background:var(--gray-soft);color:var(--t2);font-weight:500}
+.badge.r3{background:var(--brand-soft);color:var(--brand-1)}
+.badge.r2{background:var(--green-soft);color:var(--green-1)}
+.badge.r1{background:var(--gray-soft);color:var(--gray-1)}
+.human{margin:0 0 14px;padding:10px 14px;border-left:2px solid var(--brand-1);background:var(--brand-soft);border-radius:0 6px 6px 0;font-size:15px;line-height:1.75;color:var(--t1);overflow-wrap:anywhere}
+.rows{display:grid;grid-template-columns:auto 1fr;gap:8px 16px;font-size:14px;line-height:1.75}
+.rows .k{color:var(--t3);font-weight:500;font-size:13px;line-height:1.75;padding-top:1px}
+.rows .v{color:var(--t1);min-width:0;overflow-wrap:anywhere}
+.rows .v.note{color:var(--t2)}
+.rows .v strong,.human strong,.intro strong,.src .body strong{font-weight:600;color:var(--t1)}
+.src{margin-top:14px;border-top:1px solid var(--divider);padding-top:10px}
+.src summary{list-style:none;cursor:pointer;font-size:13px;font-weight:500;color:var(--t2);display:flex;align-items:center;gap:6px;user-select:none}
+.src summary::-webkit-details-marker{display:none}
+.src summary::before{content:"";width:6px;height:6px;border-right:1.5px solid var(--t3);border-bottom:1.5px solid var(--t3);transform:rotate(-45deg);transition:transform .2s;margin-right:2px}
+.src[open] summary::before{transform:rotate(45deg)}
+.src .body{padding-top:8px;font-size:13px;line-height:1.75;color:var(--t2);overflow-wrap:anywhere}
+.src summary .cnt{color:var(--t3);font-weight:400}
+/* 一條來源一行，序號掛在左邊，長 URL 單獨一行不擠正文 */
+.src .body ol{margin:0;padding:0;list-style:none;counter-reset:s}
+.src .body li{counter-increment:s;position:relative;padding-left:20px;margin-bottom:8px}
+.src .body li:last-child{margin-bottom:0}
+.src .body li::before{content:counter(s) ".";position:absolute;left:0;top:0;font-size:12px;color:var(--t3);font-variant-numeric:tabular-nums}
+.src .body a.url{display:block;font-size:12px;color:var(--t3)}
+.src .body a.url:hover{color:var(--brand-1)}
+
+.pop{position:absolute;z-index:40;background:var(--bg-elv);border:1px solid var(--divider);border-radius:8px;box-shadow:0 8px 24px rgba(0,0,0,.14);padding:10px 12px;font-size:13px;line-height:1.6;color:var(--t2)}
+.pop b{display:block;color:var(--t1);font-weight:600;margin-bottom:2px}
+.empty{border:1px dashed var(--divider);border-radius:12px;padding:40px 24px;text-align:center;color:var(--t2);margin-top:24px}
+.empty button{margin-top:12px;padding:7px 16px;border:1px solid var(--divider);border-radius:20px;font-weight:500;background:var(--bg-elv)}
+.empty button:hover{border-color:var(--brand-1);color:var(--brand-1)}
+.status{color:var(--t3);padding:40px 0;text-align:center}
+.status code{font-family:var(--mono);font-size:13px;background:var(--bg-mute);padding:2px 6px;border-radius:4px}
+.status .bar{max-width:260px;height:3px;margin:14px auto 0;border-radius:2px;background:var(--bg-mute);overflow:hidden}
+.status .bar i{display:block;height:100%;width:0;border-radius:2px;background:var(--brand-1);transition:width .18s ease-out}
+.status button{margin-top:14px;border:1px solid var(--divider);background:var(--bg-soft);color:var(--t1);border-radius:6px;padding:6px 16px;font:inherit;cursor:pointer}
+.status button:hover{border-color:var(--brand-1);color:var(--brand-1)}
+.foot{margin-top:64px;padding-top:24px;border-top:1px solid var(--divider);color:var(--t3);font-size:13px;line-height:1.7}
+
+@media (max-width:960px){
+  :root{--nav-h:56px}
+  .nav-in{padding:0 16px;gap:10px}
+  .title span{display:none}
+  .search{max-width:none}
+  .search kbd{display:none}
+  .menu-btn{display:grid}
+  .sidebar{transform:translateX(-100%);transition:transform .25s;box-shadow:none;padding:24px 24px 96px;width:min(var(--side-w),86vw)}
+  .sidebar.open{transform:none;box-shadow:0 8px 24px rgba(0,0,0,.2)}
+  .backdrop{display:block;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:15;opacity:0;pointer-events:none;transition:opacity .25s}
+  .backdrop.on{opacity:1;pointer-events:auto}
+  .content{padding:calc(var(--nav-h) + 24px) 20px 96px}
+  .doc-head h1{font-size:26px;line-height:34px}
+  .card{padding:18px 16px 14px;border-radius:10px}
+  .card-h h3{font-size:16px;line-height:24px}
+  .card-h .idx{line-height:24px}
+  .human{padding:9px 12px;font-size:14px;margin-bottom:12px}
+  .rows{grid-template-columns:1fr;gap:4px}
+  .rows .k{padding-top:6px}
+  .rows .k:first-child{padding-top:0}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+.disclaimer{margin:0 0 20px;padding:10px 14px;border:1px solid var(--divider);border-radius:8px;background:var(--bg-alt);color:var(--t2);font-size:13px;line-height:1.7}
+.rows .v.meta{color:var(--t3);font-size:13px}
+.foot p{margin:0 0 8px}
+.ln{display:block;margin-bottom:5px}
+.ln:last-child{margin-bottom:0}
+.xr{color:var(--brand-1);border-bottom:1px dashed currentColor}
+.xr:hover{text-decoration:none;border-bottom-style:solid}
+</style>
+</head>
+<body>
+
+<noscript>
+  <div style="max-width:760px;margin:0 auto;padding:32px 20px;line-height:1.7">
+    <h1>台灣生存包</h1>
+    <p>本頁的篩選與搜尋需要 JavaScript。正文是 <a href="book/">book/</a> 底下的 Markdown 檔，可直接閱讀。</p>
+    <p>本站為一般資訊整理，不構成法律或醫療建議，個案請洽專業人員。</p>
+  </div>
+</noscript>
+
+<header class="nav">
+  <div class="nav-in">
+    <button class="icon-btn menu-btn" id="menu" aria-label="開啟篩選" aria-expanded="false"><svg viewBox="0 0 24 24"><path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"/></svg></button>
+    <a class="title" href="./"><span class="logo" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 12.5l4 4 8-9.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>台灣生存包</span></a>
+    <label class="search">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5" stroke-linecap="round"/></svg>
+      <input id="q" type="search" placeholder="搜尋條目" autocomplete="off" aria-label="搜尋條目">
+      <kbd>/</kbd>
+    </label>
+    <div class="nav-r">
+      <button class="switch" id="theme" aria-label="切換深色模式" title="切換深色模式"><span class="knob"><svg class="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/></svg><svg class="moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5z"/></svg></span></button>
+    </div>
+  </div>
+</header>
+
+<div class="backdrop" id="backdrop"></div>
+<aside class="sidebar" id="sidebar">
+  <div class="group">
+    <div class="gt">章節</div>
+    <div class="sec-links" id="f-sec"></div>
+  </div>
+  <div class="group">
+    <div class="gt">性價比 <small>編輯判斷，同口徑內可比</small></div>
+    <div class="chips" data-dim="ratio">
+      <button class="chip" data-v="極高" aria-pressed="false">極高</button>
+      <button class="chip" data-v="高" aria-pressed="false">高</button>
+      <button class="chip" data-v="一般" aria-pressed="false">一般</button>
+    </div>
+  </div>
+  <div class="group">
+    <div class="gt">換回什麼 <small>口徑，不跨口徑比較</small></div>
+    <div class="chips" data-dim="lens">
+      <button class="chip" data-v="死亡率" aria-pressed="false">壽命</button>
+      <button class="chip" data-v="健康" aria-pressed="false">健康</button>
+      <button class="chip" data-v="金錢" aria-pressed="false">錢</button>
+      <button class="chip" data-v="時間" aria-pressed="false">時間精力</button>
+      <button class="chip" data-v="自由" aria-pressed="false">人身自由</button>
+    </div>
+  </div>
+  <div class="group">
+    <div class="gt">證據等級 <small>原文可對應 · 需判斷 · 經驗</small></div>
+    <div class="chips" data-dim="grade">
+      <button class="chip" data-v="A" aria-pressed="false">A 級</button>
+      <button class="chip" data-v="B" aria-pressed="false">B 級</button>
+      <button class="chip" data-v="C" aria-pressed="false">C 級</button>
+    </div>
+  </div>
+  <div class="group">
+    <div class="gt">花錢</div>
+    <div class="chips" data-dim="money">
+      <button class="chip" data-v="0" aria-pressed="false">不花錢</button>
+      <button class="chip" data-v="少" aria-pressed="false">少</button>
+      <button class="chip" data-v="多" aria-pressed="false">多</button>
+    </div>
+  </div>
+  <div class="group">
+    <div class="gt">花時間</div>
+    <div class="chips" data-dim="time">
+      <button class="chip" data-v="少" aria-pressed="false">順手</button>
+      <button class="chip" data-v="中" aria-pressed="false">幾小時</button>
+      <button class="chip" data-v="多" aria-pressed="false">每天佔用</button>
+    </div>
+  </div>
+  <div class="group">
+    <div class="gt">要毅力</div>
+    <div class="chips" data-dim="will">
+      <button class="chip" data-v="否" aria-pressed="false">不用</button>
+      <button class="chip" data-v="些" aria-pressed="false">一點</button>
+      <button class="chip" data-v="是" aria-pressed="false">很多</button>
+    </div>
+  </div>
+  <div class="group">
+    <label class="toggle"><input type="checkbox" id="f-dispute"> 只看標了爭議的</label>
+    <button class="reset" id="reset">清空篩選</button>
+  </div>
+  <div class="hint">
+    <p>章節一次只看一個，其他條件可多選。同一組多選是「或」，不同組之間是「且」。</p>
+    <p>每節內按性價比由高到低排，搜尋不改變順序。</p>
+    <p>正文是倉庫 <a href="book/">book/</a> 底下的 Markdown 檔，改正文即改這裡。</p>
+  </div>
+</aside>
+
+<main class="content">
+  <div class="doc">
+    <div class="doc-head">
+      <h1>台灣生存包</h1>
+      <p>每一條都回答兩個問題：花掉什麼，換回什麼。</p>
+      <p>這是一份按性價比排好的備選單，不是任務清單。挑走一兩條就算數，其餘需要時再回來查。</p>
+      <p>每條附官方原文出處與核實日期，沒查到官方原文的不寫。</p>
+      <div class="stat" aria-live="polite">目前顯示 <b id="cnt">–</b> 條，共 <span id="tot">–</span> 條</div>
+    </div>
+    <div class="disclaimer">本站為一般資訊整理，不構成法律或醫療建議，個案請洽專業人員。法律與福利規定常修正，請以條目標示的核實日期和官方最新公告為準。</div>
+    <div id="list">
+      <div class="status" id="status"><span id="status-t">正在讀取正文 …</span></div>
+      <div class="empty" id="empty" hidden>
+        沒有符合的條目。去掉一個篩選條件，或換個更短的關鍵詞。
+        <div><button id="reset2">清空篩選</button></div>
+      </div>
+    </div>
+    <div class="foot">
+      <p>性價比檔由收益量級加花錢、花時間、要毅力三項成本合成，是編輯判斷，不是證據；規則：收益「大」且三項成本全零為極高；「大」且成本分 ≤ 2，或「中」且成本全零為高；其餘為一般；收益未定（?）者不標檔。成本分：花錢 少=1、多=2；花時間 中=1、多=2；要毅力 些=1、是=2。</p>
+      <p>本站啟發自 <a href="https://github.com/eternity4719/HowToLiveBetter" target="_blank" rel="noopener">eternity4719/HowToLiveBetter</a>（正文 CC BY 4.0、程式碼 MIT）。條目依台灣制度重寫，版面與前端程式改編自該專案，MIT 聲明見 <a href="NOTICES.md">NOTICES.md</a>。</p>
+      <p>法規條文取自全國法規資料庫，依「政府資料開放授權條款－第 1 版」使用。</p>
+    </div>
+  </div>
+</main>
+
+<script>
+/* 條目格式與核實規則見 CLAUDE.md；資料來自 book/manifest.json 列出的 Markdown 檔 */
+const REVERIFY_DAYS = 180;   // 暫定：核實日期超過這個天數就標「核實已久」；重驗頻率尚未定案
+const DISPUTE_HELP = {
+  '證據': '醫學或研究證據彼此衝突或強度有限，備註列出正反兩方',
+  '個案認定': '法律效果要由法院或主管機關依個案認定，結果可能不同，備註列出正反兩方',
+  '法規修正中': '法規剛修正或新舊版本交替，適用時點請對照官方最新公告',
+  '立場': '涉及價值或倫理立場的不同主張，備註列出各方說法'
+};
+const COST_W = { money:{'0':0,'少':1,'多':2}, time:{'少':0,'中':1,'多':2}, will:{'否':0,'些':1,'是':2} };
+const LENS_LABEL = { '死亡率':'壽命', '健康':'健康', '金錢':'錢', '時間':'時間精力', '自由':'人身自由' };
+const LABEL = {
+  money:{'0':'不花錢','少':'花錢少','多':'花錢多'},
+  time:{'少':'順手','中':'花幾小時','多':'每天佔用'},
+  will:{'否':'不用毅力','些':'要一點毅力','是':'要很多毅力'}
+};
+const META_KEYS = ['id','適用地區','核實日期','法源條號','失效條件'];
+const RATIO_RANK = {'極高':3,'高':2,'一般':1};
+const $ = (s, r=document) => r.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+let SECTIONS = [], CARDS = [], IDS = new Set();
+
+/* ---------- 解析 ---------- */
+function parseMeta(str, keys){
+  const re = new RegExp('(' + keys.join('|') + ')=', 'g');
+  const hits = [...str.matchAll(re)], out = {};
+  hits.forEach((h, i) => { out[h[1]] = str.slice(h.index + h[0].length, i + 1 < hits.length ? hits[i+1].index : undefined).trim(); });
+  return out;
+}
+function parseChapter(md, file, order){
+  const sec = { order, file, title:'', intro:[], entries:[] };
+  let e = null;
+  const flush = () => { if (e) sec.entries.push(e); e = null; };
+  for (const raw of md.split(/\r?\n/)){
+    const line = raw.trimEnd(); let m;
+    if (!e && (m = /^# (.+)$/.exec(line))) { sec.title = m[1].trim(); continue; }
+    if ((m = /^### (.+)$/.exec(line))) { flush(); e = { title:m[1].trim(), cost:'', human:'', gain:'', proc:'', grade:'', src:'', note:'', money:'', time:'', will:'', level:'', lens:'', meta:{} }; continue; }
+    if (!e) { if (line && !/^---/.test(line)) sec.intro.push(line); continue; }
+    if ((m = /^<!--\s*成本標籤:\s*(.*?)\s*-->/.exec(line))) {
+      const t = parseMeta(m[1], ['錢','時間','毅力','收益','口徑']);
+      e.money = t['錢']||''; e.time = t['時間']||''; e.will = t['毅力']||''; e.level = t['收益']||''; e.lens = t['口徑']||''; continue;
+    }
+    if ((m = /^<!--\s*(id=.*?)\s*-->/.exec(line))) { e.meta = parseMeta(m[1], META_KEYS); continue; }
+    if ((m = /^- 成本：(.*)$/.exec(line))) e.cost = m[1];
+    else if ((m = /^- 說人話：(.*)$/.exec(line))) e.human = m[1];
+    else if ((m = /^- 收益：(.*)$/.exec(line))) e.gain = m[1];
+    else if ((m = /^- 過程成本：(.*)$/.exec(line))) e.proc = m[1];
+    else if ((m = /^- 證據等級：\s*([ABC])/.exec(line))) e.grade = m[1];
+    else if ((m = /^- 來源：(.*)$/.exec(line))) e.src = m[1];
+    else if ((m = /^- 備註：(.*)$/.exec(line))) e.note = m[1];
+  }
+  flush();
+  sec.entries.forEach((x, i) => {
+    x.id = x.meta.id || ''; x.seq = i;
+    x.dispute = /^爭議/.test(x.note);
+    x.disputeType = ((/^爭議（([^）]+)）/.exec(x.note) || [])[1]) || '';
+    x.cs = (COST_W.money[x.money] ?? 0) + (COST_W.time[x.time] ?? 0) + (COST_W.will[x.will] ?? 0);
+    x.ratio = x.level === '大' ? (x.cs === 0 ? '極高' : (x.cs <= 2 ? '高' : '一般'))
+            : x.level === '中' ? (x.cs === 0 ? '高' : '一般')
+            : x.level === '小' ? '一般' : '';
+    x.hay = [x.title, x.human, x.cost, x.gain, x.proc, x.note, x.src, x.grade, x.meta['法源條號']||''].join('\n').replace(/\*\*/g, '').toLowerCase();
+  });
+  // 每節內按性價比由高到低，同檔維持檔案內順序
+  sec.entries.sort((a, b) => (RATIO_RANK[b.ratio]||0) - (RATIO_RANK[a.ratio]||0) || a.seq - b.seq);
+  return sec;
+}
+
+/* ---------- 文字渲染：連結、粗體、條目 id 交叉引用 ---------- */
+const URL_RE = /https?:\/\/[A-Za-z0-9\-._~:\/?#\[\]@!$&'()*+,=%]+/g;
+function trimUrl(u){
+  let t = '';
+  while (/[.,)\]']$/.test(u)) { const c = u.slice(-1); if (c === ')' && (u.match(/\(/g)||[]).length >= (u.match(/\)/g)||[]).length) break; t = c + t; u = u.slice(0, -1); }
+  return [u, t];
+}
+function inline(s){
+  let html = '', pos = 0, m;
+  const plain = (t) => esc(t)
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\btw-[a-z0-9]+(?:-[a-z0-9]+)*\b/g, id => IDS.has(id) ? `<a class="xr" href="#${id}" data-go="${id}">${id}</a>` : id);
+  URL_RE.lastIndex = 0;
+  while ((m = URL_RE.exec(s))) {
+    const [u, tail] = trimUrl(m[0]);
+    html += plain(s.slice(pos, m.index)) + `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(u)}</a>` + esc(tail);
+    pos = m.index + m[0].length;
+  }
+  return html + plain(s.slice(pos));
+}
+// 長欄位按句號分行，一行一件事，方便掃讀
+function lines(s){
+  if (s.length < 90) return inline(s);
+  return s.split(/(?<=。)(?=\S)/).map(x => `<span class="ln">${inline(x.trim())}</span>`).join('');
+}
+function renderSources(el, cntEl, src){
+  // 來源之間用「 ；」（前面有空格）分隔；沒有這個分隔就整段當一條
+  const parts = src.split(/\s+；\s*/).map(x => x.trim()).filter(Boolean);
+  cntEl.textContent = ` · ${parts.length} 條`;
+  const ol = document.createElement('ol');
+  for (const p of parts) {
+    const li = document.createElement('li');
+    // 把 URL 另起一行，與說明文字分開
+    const urls = p.match(URL_RE) || [];
+    let text = p; for (const u of urls) text = text.replace(u, '');
+    li.innerHTML = inline(text.trim()) + urls.map(u => { const [c] = trimUrl(u); return `<a class="url" href="${esc(c)}" target="_blank" rel="noopener">${esc(c)}</a>`; }).join('');
+    ol.appendChild(li);
+  }
+  el.appendChild(ol);
+}
+function daysSince(iso){
+  const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso || ''); if (!m) return null;
+  return Math.floor((Date.now() - Date.UTC(+m[1], +m[2]-1, +m[3])) / 864e5);
+}
+
+/* ---------- 建頁 ---------- */
+function build(){
+  const list = $('#list'), side = $('#f-sec');
+  CARDS = [];
+  const all = document.createElement('button'); all.className = 'sec-link all'; all.dataset.sec = ''; all.setAttribute('aria-pressed','true');
+  all.innerHTML = `全部<i id="n-all"></i>`; side.appendChild(all);
+  SECTIONS.forEach((s, si) => {
+    const b = document.createElement('button'); b.className = 'sec-link'; b.dataset.sec = String(si); b.setAttribute('aria-pressed','false');
+    b.innerHTML = `<span>${esc(s.title)}</span><i>${s.entries.length}</i>`; side.appendChild(b);
+    const block = document.createElement('section'); block.className = 'sec-block'; block.dataset.sec = String(si);
+    block.innerHTML = `<div class="sec-h"><h2>${esc(s.title)}</h2><span class="shown"><span class="k"></span> / ${s.entries.length}</span></div>`;
+    for (const p of s.intro) { const el = document.createElement('p'); el.className = 'intro'; el.innerHTML = inline(p); block.appendChild(el); }
+    s.entries.forEach((e, i) => {
+      const id = e.id || `e-${si}-${i}`;
+      const c = document.createElement('article'); c.className = 'card'; c.id = id;
+      c.innerHTML = `
+        <div class="card-h"><span class="idx">${i+1}</span><h3></h3><a class="anchor" href="#${esc(id)}" aria-label="本條連結">#</a></div>
+        <div class="badges"></div>
+        <p class="human"></p>
+        <div class="rows">
+          <div class="k">成本</div><div class="v cost"></div>
+          <div class="k">收益</div><div class="v gain"></div>
+          <div class="k kp">過程成本</div><div class="v proc"></div>
+          <div class="k">備註</div><div class="v note"></div>
+          <div class="k">核實</div><div class="v meta"></div>
+        </div>
+        <details class="src"><summary>來源<span class="cnt"></span></summary><div class="body"></div></details>`;
+      $('h3', c).textContent = e.title;
+      $('.human', c).innerHTML = inline(e.human);
+      $('.cost', c).innerHTML = inline(e.cost);
+      $('.gain', c).innerHTML = inline(e.gain);
+      $('.proc', c).innerHTML = lines(e.proc);
+      $('.note', c).innerHTML = lines(e.note);
+      if (!e.proc) { $('.kp', c).hidden = true; $('.proc', c).hidden = true; }
+      const badges = $('.badges', c);
+      const add = (cls, text, title) => { const t = document.createElement('span'); t.className = 'badge ' + cls; t.textContent = text; if (title) t.title = title; badges.appendChild(t); };
+      if (e.ratio) add('r' + RATIO_RANK[e.ratio], '性價比 ' + e.ratio, `編輯判斷：由收益量級（${e.level}）和三項成本合成，只在同一口徑（${LENS_LABEL[e.lens]||e.lens}）內可比，與證據等級無關`);
+      add(e.grade || 'C', `證據 ${e.grade || '?'} 級`);
+      if (e.lens) add('plain', LENS_LABEL[e.lens] || e.lens);
+      for (const d of ['money','time','will']) if (e[d]) add('plain', LABEL[d][e[d]] || e[d]);
+      if (e.dispute) add('danger', e.disputeType ? '爭議・' + e.disputeType : '爭議', DISPUTE_HELP[e.disputeType] || '備註裡有反方意見或證據衝突，請看備註');
+      const age = daysSince(e.meta['核實日期']);
+      if (age !== null && age > REVERIFY_DAYS) add('warn', `核實已 ${age} 天`, '核實日期距今已久，法規與金額可能變動，請對照來源');
+      const mt = [`核實日期 ${e.meta['核實日期'] || '未標'}`, `適用 ${e.meta['適用地區'] || '未標'}`];
+      if (e.meta['法源條號']) mt.push(`法源：${e.meta['法源條號']}`);
+      if (e.meta['失效條件']) mt.push(`何時失效：${e.meta['失效條件']}`);
+      $('.meta', c).innerHTML = mt.map(inline).join('<br>');
+      renderSources($('.src .body', c), $('.src .cnt', c), e.src);
+      block.appendChild(c);
+      CARDS.push({ e, el:c, si, id });
+    });
+    list.appendChild(block);
+  });
+  $('#tot').textContent = CARDS.length; $('#n-all').textContent = CARDS.length;
+  $('#status').hidden = true;
+}
+
+/* ---------- 篩選 ---------- */
+const DIMS = ['ratio','lens','grade','money','time','will'];
+const state = { q:'', sec:'', dispute:false }; DIMS.forEach(d => state[d] = new Set());
+function readUrl(){
+  const p = new URLSearchParams(location.search);
+  state.q = p.get('q') || ''; state.sec = p.get('sec') || ''; state.dispute = p.get('dispute') === '1';
+  DIMS.forEach(d => state[d] = new Set((p.get(d)||'').split(',').filter(Boolean)));
+}
+function writeUrl(){
+  const p = new URLSearchParams();
+  if (state.q) p.set('q', state.q); if (state.sec) p.set('sec', state.sec); if (state.dispute) p.set('dispute','1');
+  DIMS.forEach(d => { if (state[d].size) p.set(d, [...state[d]].join(',')); });
+  const qs = p.toString(); history.replaceState(null, '', (qs ? '?' + qs : location.pathname) + location.hash);
+}
+function syncControls(){
+  $('#q').value = state.q; $('#f-dispute').checked = state.dispute;
+  document.querySelectorAll('[data-dim] [data-v]').forEach(b => b.setAttribute('aria-pressed', String(state[b.parentElement.dataset.dim].has(b.dataset.v))));
+  document.querySelectorAll('#f-sec .sec-link').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.sec === state.sec)));
+}
+function match(c){
+  const e = c.e;
+  if (state.sec !== '' && String(c.si) !== state.sec) return false;
+  if (state.ratio.size && !state.ratio.has(e.ratio)) return false;
+  if (state.lens.size && !state.lens.has(e.lens)) return false;
+  if (state.grade.size && !state.grade.has(e.grade)) return false;
+  if (state.money.size && !state.money.has(e.money)) return false;
+  if (state.time.size && !state.time.has(e.time)) return false;
+  if (state.will.size && !state.will.has(e.will)) return false;
+  if (state.dispute && !e.dispute) return false;
+  const terms = state.q.toLowerCase().split(/\s+/).filter(Boolean);
+  return terms.every(t => e.hay.includes(t));
+}
+function apply(){
+  let n = 0; const per = new Map();
+  for (const c of CARDS) { const ok = match(c); c.el.hidden = !ok; if (ok) { n++; per.set(c.si, (per.get(c.si)||0) + 1); } }
+  document.querySelectorAll('.sec-block').forEach(b => { const k = per.get(+b.dataset.sec) || 0; b.hidden = k === 0; $('.shown .k', b).textContent = k; });
+  $('#cnt').textContent = n; $('#empty').hidden = n !== 0;
+  syncControls(); writeUrl();
+}
+function resetAll(){ state.q = ''; state.sec = ''; state.dispute = false; DIMS.forEach(d => state[d].clear()); apply(); }
+function goTo(id){
+  const c = CARDS.find(x => x.id === id); if (!c) return;
+  if (c.el.hidden) resetAll();
+  c.el.scrollIntoView({ block:'start' }); c.el.classList.remove('flash'); void c.el.offsetWidth; c.el.classList.add('flash');
+  if (location.hash !== '#' + id) history.replaceState(null, '', location.pathname + location.search + '#' + id);
+}
+function wire(){
+  document.addEventListener('click', ev => {
+    const chip = ev.target.closest('[data-dim] [data-v]');
+    if (chip) { const set = state[chip.parentElement.dataset.dim], v = chip.dataset.v; set.has(v) ? set.delete(v) : set.add(v); apply(); return; }
+    const sl = ev.target.closest('#f-sec .sec-link');
+    if (sl) { state.sec = sl.dataset.sec; apply(); closeSide(); window.scrollTo({top:0}); return; }
+    const xr = ev.target.closest('a[data-go]');
+    if (xr) { ev.preventDefault(); goTo(xr.dataset.go); }
+  });
+  let t = null;
+  $('#q').addEventListener('input', ev => { clearTimeout(t); t = setTimeout(() => { state.q = ev.target.value.trim(); apply(); }, 120); });
+  $('#f-dispute').addEventListener('change', ev => { state.dispute = ev.target.checked; apply(); });
+  $('#reset').addEventListener('click', resetAll); $('#reset2').addEventListener('click', resetAll);
+  $('#theme').addEventListener('click', () => {
+    const d = document.documentElement.classList.toggle('dark');
+    try { localStorage.setItem('theme', d ? 'dark' : 'light'); } catch (e) {}
+  });
+  const openSide = () => { $('#sidebar').classList.add('open'); $('#backdrop').classList.add('on'); $('#menu').setAttribute('aria-expanded','true'); };
+  window.closeSide = () => { $('#sidebar').classList.remove('open'); $('#backdrop').classList.remove('on'); $('#menu').setAttribute('aria-expanded','false'); };
+  $('#menu').addEventListener('click', () => $('#sidebar').classList.contains('open') ? closeSide() : openSide());
+  $('#backdrop').addEventListener('click', closeSide);
+  document.addEventListener('keydown', ev => {
+    if (ev.key === '/' && !/INPUT|TEXTAREA/.test(document.activeElement.tagName)) { ev.preventDefault(); $('#q').focus(); }
+    if (ev.key === 'Escape') { closeSide(); if (document.activeElement === $('#q')) $('#q').blur(); }
+  });
+  addEventListener('hashchange', () => { const id = decodeURIComponent(location.hash.slice(1)); if (id) goTo(id); });
+}
+
+/* ---------- 啟動 ---------- */
+(async function(){
+  const status = $('#status-t');
+  try {
+    const man = await (await fetch('book/manifest.json', { cache:'no-cache' })).json();
+    const mds = await Promise.all(man.chapters.map(async f => {
+      const r = await fetch('book/' + f, { cache:'no-cache' });
+      if (!r.ok) throw new Error(f + ' ' + r.status);
+      return r.text();
+    }));
+    SECTIONS = mds.map((md, i) => parseChapter(md, man.chapters[i], i)).filter(s => s.entries.length);
+    SECTIONS.forEach(s => s.entries.forEach(e => e.id && IDS.add(e.id)));
+    readUrl(); build(); wire(); apply();
+    const id = decodeURIComponent(location.hash.slice(1)); if (id) goTo(id);
+  } catch (err) {
+    status.innerHTML = `讀取正文失敗（${esc(String(err.message))}）。<br>用瀏覽器直接開檔案讀不到，請在專案資料夾執行 <code>python3 -m http.server</code> 再開 <code>http://localhost:8000</code>。`;
+  }
+})();
+</script>
+</body>
+</html>

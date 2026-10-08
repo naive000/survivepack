@@ -1,0 +1,25 @@
+name: 糾錯
+description: 條目的法條、金額、專線、來源或日期有錯
+labels: [糾錯]
+body:
+  - type: input
+    id: entry
+    attributes:
+      label: 條目 id 或標題
+      description: 例如 tw-labor-notice-period，或貼上標題
+    validations:
+      required: true
+  - type: textarea
+    id: issue
+    attributes:
+      label: 哪裡錯了
+      description: 寫出條目現在的句子，以及你認為正確的內容
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: 官方來源連結
+      description: 全國法規資料庫、主管機關官網、期刊原文。新聞與自媒體不收
+    validations:
+      required: true

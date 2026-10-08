@@ -1,0 +1,23 @@
+name: 新內容
+description: 建議新增一條
+labels: [新內容]
+body:
+  - type: input
+    id: title
+    attributes:
+      label: 一句話標題（動詞開頭）
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: 花掉什麼、換回什麼
+      description: 錢、時間、精力、毅力；換回壽命、健康、錢、時間或自由
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: 官方來源或原始文獻連結
+    validations:
+      required: true
