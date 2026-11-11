@@ -1,0 +1,183 @@
+<!--meta {"title":"算一下你被資遣能拿多少","description":"輸入到職日、離職日和月薪，試算勞退新制、勞基法舊制的資遣費與預告工資。每個數字附勞動基準法、勞工退休金條例的條號與算式。","ogDescription":"輸入到職日、離職日和月薪，試算新制、舊制資遣費與預告工資，每個數字附條號與算式。","name":"資遣費"} -->
+<nav class="crumb" aria-label="導覽"><a href="../">台灣生存包</a> › <a href="./">試算</a> › 資遣費</nav>
+<h1>資遣費試算</h1>
+<p class="lead">被雇主資遣，或你依勞基法第14條不經預告離職時，用這頁估資遣費和預告工資。</p>
+
+<form id="f" novalidate>
+  <div class="row2">
+    <div class="f"><label for="start">到職日</label><input id="start" type="date" required></div>
+    <div class="f"><label for="end">離職日（契約終止的那天）</label><input id="end" type="date" required></div>
+  </div>
+  <div class="f">
+    <label for="wage">一個月平均工資（新臺幣元）</label>
+    <input id="wage" type="number" inputmode="numeric" min="0" step="1" placeholder="例如 40000">
+    <span class="hint">本工具以你輸入的月薪當平均工資，實際以勞基法第2條第4款計算：離職前六個月工資總額，除以這段期間的總日數。經常性的津貼、獎金要不要算進去，請自己對照第2條第3款確認。</span>
+  </div>
+  <div class="f">
+    <label for="sys">你適用哪一種退休金制度</label>
+    <select id="sys">
+      <option value="new">勞退新制（勞工退休金條例）</option>
+      <option value="old">勞基法舊制（選擇繼續適用舊制）</option>
+    </select>
+    <span class="hint">不確定的話，先問雇主，或向勞保局查詢。2005-07-01 以前到職、後來改選新制的人，舊年資照舊制算，新年資照新制算。</span>
+  </div>
+  <details class="adv"><summary>進階設定：新制起算日（多數人不用改）</summary>
+  <div class="f" id="swWrap" hidden>
+      <label for="sw">你從哪天開始適用新制</label>
+      <input id="sw" type="date" value="2005-07-01">
+      <span class="hint">勞退條例 2005-07-01 施行。2005-07-01 以後才到職，或當天就改選新制的人，用預設值即可。早於到職日時，全部年資照新制算。</span>
+    </div>
+  </details>
+  <div class="f">
+    <label for="why">契約怎麼結束（勞動基準法）</label>
+    <select id="why">
+      <option value="11">雇主資遣你（第11條或第13條但書）</option>
+      <option value="14">你依第14條不經預告離職</option>
+    </select>
+  </div>
+</form>
+
+<div id="out" class="res" aria-live="polite"></div>
+
+<section class="note">
+  <h2 style="font-size:15px;margin:22px 0 6px">這個工具沒算的事</h2>
+  <ul>
+    <li>本工具不判斷雇主終止契約是否合法，也不判斷你適用哪一種制度。</li>
+    <li>年資從到職日算到離職日，兩天都算進去。條文沒寫終止日當天算不算，這是本工具的設定。</li>
+    <li>行業開始適用勞基法以前的年資，依勞基法第84條之2另計，本工具不處理。</li>
+    <li>勞退條例第8條之1列的人員，新制起算日另有規定，請在「從哪天開始適用新制」自行填入。</li>
+  </ul>
+</section>
+
+<section class="links">
+  <h2>相關條目</h2>
+  <ul>
+    <li><a href="../e/tw-labor-severance-calc/">算清楚被資遣時該領多少資遣費</a></li>
+    <li><a href="../e/tw-labor-notice-period/">被資遣時確認雇主有沒有依年資預告，沒預告要補預告工資</a></li>
+    <li><a href="../e/tw-labor-terminate-employer-breach/">確認雇主違法情形，在期限內通知雇主終止契約並請求資遣費</a></li>
+  </ul>
+</section>
+
+<p class="warn">本頁只是試算，不代表雇主實際應付的金額。</p>
+<div class="calc-foot">
+  <p>核實日期 2026-10-08。法源：<a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=N0030001" target="_blank" rel="noopener">《勞動基準法》</a>第2條、第11條、第13條、第14條、第16條、第17條、第84條之2；<a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=N0030020" target="_blank" rel="noopener">《勞工退休金條例》</a>第8條之1、第11條、第12條、第58條；新制未滿一年的比例算法依勞動部〈<a href="https://www.mol.gov.tw/1607/28162/28540/28564/28568/30457/" target="_blank" rel="noopener">新制資遣費</a>〉（頁面更新 2026-06-23）。逐條核對紀錄見 <a href="../docs/verification/calc.md">docs/verification/calc.md</a>。</p>
+  <p>法規條文取自全國法規資料庫 Open API（資料日期 2026-09-18），依「政府資料開放授權條款－第 1 版」使用。</p>
+  <p>本頁不收集你輸入的任何資料，計算全在你的瀏覽器裡完成。</p>
+</div>
+<!--script-->
+<script>
+(function(){
+var b=document.getElementById('theme');
+b.addEventListener('click',function(){var d=document.documentElement.classList.toggle('dark');try{localStorage.setItem('theme',d?'dark':'light')}catch(e){}});
+
+var DAY=864e5, NEW_START=Date.UTC(2005,6,1);
+function $(id){return document.getElementById(id)}
+function parse(s){
+  if(!/^\d{4}-\d{2}-\d{2}$/.test(s||''))return null;
+  var p=s.split('-').map(Number), t=Date.UTC(p[0],p[1]-1,p[2]);
+  return new Date(t).getUTCMonth()===p[1]-1?t:null;
+}
+function iso(t){return new Date(t).toISOString().slice(0,10)}
+function addMonths(t,n){
+  var d=new Date(t), y=d.getUTCFullYear(), m=d.getUTCMonth()+n, day=d.getUTCDate();
+  var last=new Date(Date.UTC(y,m+1,0)).getUTCDate();
+  return Date.UTC(y,m,Math.min(day,last));
+}
+// start 起算、endEx 不含（= 最後一天的隔天）。回傳滿幾年、幾個月、剩幾天
+function ymd(start,endEx){
+  if(endEx<=start)return {y:0,m:0,d:0,tm:0};
+  var a=new Date(start), b=new Date(endEx);
+  var m=(b.getUTCFullYear()-a.getUTCFullYear())*12+(b.getUTCMonth()-a.getUTCMonth());
+  while(m>0&&addMonths(start,m)>endEx)m--;
+  while(addMonths(start,m+1)<=endEx)m++;
+  var d=Math.round((endEx-addMonths(start,m))/DAY);
+  return {y:Math.floor(m/12),m:m%12,d:d,tm:m};
+}
+function fy(s){return s.y+' 年 '+s.m+' 個月 '+s.d+' 天'}
+function money(n){return '新臺幣 '+Math.round(n).toLocaleString('zh-TW')+' 元'}
+function num(n,k){return (Math.round(n*Math.pow(10,k))/Math.pow(10,k)).toString()}
+function law(t,tool){return '<span class="law'+(tool?' tool':'')+'">'+t+'</span>'}
+function item(k,v,how,cls){return '<div class="item'+(cls?' '+cls:'')+'"><div class="k">'+k+'</div><div class="v">'+v+'</div><div class="how">'+how+'</div></div>'}
+
+function render(){
+  var out=$('out'), sys=$('sys').value, why=$('why').value;
+  var st=parse($('start').value), en=parse($('end').value), w=parseFloat($('wage').value);
+  $('swWrap').hidden=sys!=='new';
+  if(st===null||en===null||!(w>0)){out.innerHTML='<p class="note">填好到職日、離職日和平均工資，結果會出現在這裡。</p>';return}
+  if(en<st){out.innerHTML='<p class="err">離職日早於到職日，請再確認。</p>';return}
+  var endEx=en+DAY, h='', warns='';
+  var segOld=null, segNew=null;
+  if(sys==='old'){segOld=[st,endEx]}
+  else{
+    var sw=parse($('sw').value);
+    if(sw===null){out.innerHTML='<p class="err">請填你開始適用新制的日期。2005-07-01 以後才到職的人，不用改預設值。</p>';return}
+    if(sw<NEW_START){out.innerHTML='<p class="err">勞退條例 2005-07-01 才施行，新制起算日不能早於這天。</p>';return}
+    if(sw<=st){segNew=[st,endEx]}
+    else if(sw>=endEx){segOld=[st,endEx]}
+    else{segOld=[st,sw];segNew=[sw,endEx]}
+  }
+  if(sys==='old'&&st>=NEW_START){
+    warns+='<div class="warn">你在 2005-07-01 以後才到職。勞動部〈新制資遣費〉頁面把 2005-07-01 以後初次就業、離職再受僱的勞工列為新制。請再確認你的制度。</div>';
+  }
+
+  var all=ymd(st,endEx);
+  h+='<h2>年資</h2>';
+  h+=item('總年資',fy(all),'從 '+iso(st)+' 算到 '+iso(en)+'，兩天都算進去。年資自受僱當日起算 '+law('勞基法施行細則第5條')+'。終止日當天算不算，條文沒寫，這是本工具的設定 '+law('本工具設定',1)+'。');
+
+  var total=0;
+  if(segOld){
+    var o=ymd(segOld[0],segOld[1]);
+    var rm=o.m+(o.d>0?1:0), units=o.y+rm/12;
+    var amt=w*units; total+=amt;
+    var lbl=sys==='new'?'舊制保留年資的資遣費':'舊制資遣費';
+    h+='<h2>'+lbl+'</h2>';
+    h+=item(lbl,money(amt),
+      '舊制年資 <b>'+fy(o)+'</b>（'+iso(segOld[0])+' 到 '+iso(segOld[1]-DAY)+'）。<br>'+
+      '每滿一年給一個月平均工資 '+law('勞基法第17條第1項第1款')+'；剩餘月數按比例，未滿一個月以一個月計 '+law('勞基法第17條第1項第2款')+'。<br>'+
+      '算式：'+w.toLocaleString('zh-TW')+' × ['+o.y+' + ('+o.m+(o.d>0?' + 1':'')+') ÷ 12] = '+w.toLocaleString('zh-TW')+' × '+num(units,4)+
+      (sys==='new'?'<br>適用新制以前的年資保留，以契約終止時的平均工資計給 '+law('勞退條例第11條第1、2項'):'')+
+      (sys==='old'?'<br>選擇繼續適用勞基法退休金規定的人，資遣費依勞基法第17條發給 '+law('勞退條例第12條第3項'):''));
+  }
+  if(segNew){
+    var n=ymd(segNew[0],segNew[1]);
+    var raw=(n.y+(n.m+n.d/30)/12)/2, cap=raw>6, units2=Math.min(raw,6);
+    var amt2=w*units2; total+=amt2;
+    h+='<h2>新制資遣費</h2>';
+    h+=item('新制資遣費',money(amt2),
+      '新制年資 <b>'+fy(n)+'</b>（'+iso(segNew[0])+' 到 '+iso(segNew[1]-DAY)+'）。<br>'+
+      '每滿一年給二分之一個月平均工資，未滿一年按比例，最高六個月 '+law('勞退條例第12條第1項')+'。<br>'+
+      '比例怎麼算，條文只寫「以比例計給」；本工具照勞動部頁面的算例，剩餘天數除以 30 換成月 '+law('勞動部新制資遣費頁面',1)+'。<br>'+
+      '算式：'+w.toLocaleString('zh-TW')+' × ½ × ['+n.y+' + ('+n.m+' + '+n.d+' ÷ 30) ÷ 12] = '+w.toLocaleString('zh-TW')+' × '+num(raw,4)+
+      (cap?'<br>超過六個月，以六個月計 '+law('勞退條例第12條第1項'):''));
+  }
+  if(segOld&&segNew){
+    h+=item('資遣費合計',money(total),'舊制保留年資的資遣費 + 新制資遣費。六個月上限只寫在新制的第12條，本工具只對新制部分套上限。','total');
+  }
+  h+='<p class="note">雇主要在終止契約後三十日內發給 '+law('勞基法第17條第2項')+' '+law('勞退條例第11條第2項、第12條第2項')+'。</p>';
+  if(why==='14'){
+    h+='<p class="note">你依第14條終止契約時，第17條「準用」'+law('勞基法第14條第4項')+'，新制也列了第14條 '+law('勞退條例第12條第1項')+'。</p>';
+  }
+
+  // 預告
+  h+='<h2>預告期間與預告工資</h2>';
+  if(why==='14'){
+    h+=item('預告工資','不適用','第16條的預告期間只管「雇主依第11條或第13條但書」終止契約 '+law('勞基法第16條第1項')+'。你依第14條不經預告終止，條文沒有預告工資。');
+  }else if(all.tm<3){
+    h+=item('預告期間','條文沒有規定','你的年資未滿三個月。第16條只列了繼續工作三個月以上的三種預告期間 '+law('勞基法第16條第1項')+'。');
+  }else{
+    var nd=all.tm<12?10:(all.tm<36?20:30), k=all.tm<12?'第1款':(all.tm<36?'第2款':'第3款');
+    var rng=all.tm<12?'三個月以上一年未滿':(all.tm<36?'一年以上三年未滿':'三年以上');
+    h+=item('雇主應在幾天前預告',nd+' 日','你繼續工作'+rng+'，'+nd+'日前預告 '+law('勞基法第16條第1項'+k)+'。');
+    h+=item('沒有預告時，預告期間的工資（估）',money(w/30*nd),
+      '雇主沒依期間預告就終止契約，要給付預告期間的工資 '+law('勞基法第16條第3項')+'。<br>'+
+      '算式：'+w.toLocaleString('zh-TW')+' ÷ 30 × '+nd+'。條文沒寫一日工資怎麼算，÷ 30 是本工具的估法 '+law('本工具設定',1)+'。<br>'+
+      '雇主有預告但天數不夠時，要補全部還是只補差額，條文沒寫清楚，本工具不算。');
+    h+='<p class="note">接到預告後，你可以在工作時間請假外出找工作，每星期不超過二日的工作時間，請假期間工資照給 '+law('勞基法第16條第2項')+'。</p>';
+  }
+  out.innerHTML=warns+h;
+}
+['start','end','wage','sys','sw','why'].forEach(function(id){$(id).addEventListener('input',render);$(id).addEventListener('change',render)});
+$('f').addEventListener('submit',function(e){e.preventDefault()});
+render();
+})();
+</script>

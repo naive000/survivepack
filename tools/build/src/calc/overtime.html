@@ -1,0 +1,119 @@
+<!--meta {"title":"算一下你的加班費該拿多少","description":"輸入每小時工資和加班時數，試算平日延長工時、休息日工作、國定假日出勤的加班費，並檢查每月延長工時上限。每個數字附勞動基準法條號與算式。","ogDescription":"平日加班、休息日上班、國定假日出勤，各該加給多少？輸入時薪和時數就能試算，每個數字附條號與算式。","name":"加班費"} -->
+<nav class="crumb" aria-label="導覽"><a href="../">台灣生存包</a> › <a href="./">試算</a> › 加班費</nav>
+<h1>加班費試算</h1>
+<p class="lead">拿出一個月的出勤紀錄，用這頁估加班費該領多少，順便看延長工時有沒有超過上限。</p>
+
+<form id="f" novalidate>
+  <div class="f">
+    <label for="w">平日每小時工資額（新臺幣元）</label>
+    <input id="w" type="number" inputmode="decimal" min="0" step="0.01" placeholder="例如 200">
+    <span class="hint">第24條用「平日每小時工資額」當基準，但勞基法條文沒寫月薪怎麼換算成時薪。請用薪資明細上的時薪，或向雇主、主管機關確認。</span>
+  </div>
+  <div class="row2">
+    <div class="f"><label for="wdH">平日：每天延長幾小時</label><input id="wdH" type="number" inputmode="decimal" min="0" step="0.5" placeholder="例如 2"></div>
+    <div class="f"><label for="wdN">這個月有幾天這樣加班</label><input id="wdN" type="number" inputmode="numeric" min="0" step="1" placeholder="例如 10"></div>
+  </div>
+  <div class="row2">
+    <div class="f"><label for="rdH">休息日：每次工作幾小時</label><input id="rdH" type="number" inputmode="decimal" min="0" step="0.5" placeholder="例如 8"></div>
+    <div class="f"><label for="rdN">這個月休息日上班幾次</label><input id="rdN" type="number" inputmode="numeric" min="0" step="1" placeholder="例如 1"></div>
+  </div>
+  <div class="f">
+    <label for="hdN">國定假日（第37條的休假日）經你同意上班幾天</label>
+    <input id="hdN" type="number" inputmode="numeric" min="0" step="1" placeholder="例如 0">
+    <span class="hint">只算每天正常工時 8 小時以內。例假日原則上不能叫你上班，本工具不算。</span>
+  </div>
+</form>
+
+<div id="out" class="res" aria-live="polite"></div>
+
+<section class="note">
+  <h2 style="font-size:15px;margin:22px 0 6px">這個工具沒算的事</h2>
+  <ul>
+    <li>平日加班以「當天正常工作 8 小時」為前提，只算一天之內的延長工時。每週超過 40 小時的部分也算延長工時（勞基法施行細則第20條之1），本工具不算。</li>
+    <li>第30條第2、3項、第30條之1的變形工時，和第84條之1經核定公告另行約定的工作者，本工具不適用。</li>
+    <li>天災、事變或突發事件時延長的工時（第32條第4項），工資加倍發給（第24條第1項第3款），本工具不算。</li>
+    <li>每三個月延長工時不超過 138 小時的限制（第32條第2項），本工具不檢查。</li>
+    <li>條文寫的是「以上」，這裡算的是法定最低數字。雇主可以給更多。</li>
+  </ul>
+</section>
+
+<section class="links">
+  <h2>相關條目</h2>
+  <ul>
+    <li><a href="../e/tw-labor-overtime-pay/">確認加班費有照法定加給倍率算</a></li>
+    <li><a href="../e/tw-labor-working-hours/">確認每天、每月加班有沒有超過法定上限</a></li>
+    <li><a href="../e/tw-labor-holiday-work-pay/">分清例假、休息日和國定假日，上班前先看工資怎麼算</a></li>
+  </ul>
+</section>
+
+<p class="warn">本頁只是試算，不代表雇主實際應付的金額。</p>
+<div class="calc-foot">
+  <p>核實日期 2026-10-08。法源：<a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=N0030001" target="_blank" rel="noopener">《勞動基準法》</a>第24條、第30條、第32條、第36條、第37條、第39條、第84條之1；<a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=N0030002" target="_blank" rel="noopener">《勞動基準法施行細則》</a>第20條之1。逐條核對紀錄見 <a href="../docs/verification/calc.md">docs/verification/calc.md</a>。</p>
+  <p>法規條文取自全國法規資料庫 Open API（資料日期 2026-09-18），依「政府資料開放授權條款－第 1 版」使用。</p>
+  <p>本頁不收集你輸入的任何資料，計算全在你的瀏覽器裡完成。</p>
+</div>
+<!--script-->
+<script>
+(function(){
+var b=document.getElementById('theme');
+b.addEventListener('click',function(){var d=document.documentElement.classList.toggle('dark');try{localStorage.setItem('theme',d?'dark':'light')}catch(e){}});
+
+function $(id){return document.getElementById(id)}
+function v(id){var x=parseFloat($(id).value);return x>0?x:0}
+function money(n){return '新臺幣 '+Math.round(n).toLocaleString('zh-TW')+' 元'}
+function f2(n){return (Math.round(n*100)/100).toLocaleString('zh-TW')}
+function law(t,tool){return '<span class="law'+(tool?' tool':'')+'">'+t+'</span>'}
+function item(k,val,how,cls){return '<div class="item'+(cls?' '+cls:'')+'"><div class="k">'+k+'</div><div class="v">'+val+'</div><div class="how">'+how+'</div></div>'}
+
+function render(){
+  var out=$('out'), w=v('w');
+  var wdH=v('wdH'), wdN=Math.floor(v('wdN')), rdH=v('rdH'), rdN=Math.floor(v('rdN')), hdN=Math.floor(v('hdN'));
+  if(!(w>0)){out.innerHTML='<p class="note">先填平日每小時工資額，再填加班時數，結果會出現在這裡。</p>';return}
+  var h='', warns='', total=0, ws=f2(w);
+
+  if(wdH>0&&wdN>0){
+    var a=Math.min(wdH,2), c=Math.min(Math.max(wdH-2,0),2), over=Math.max(wdH-4,0);
+    var r1=w*(1+1/3), r2=w*(1+2/3), day=a*r1+c*r2, amt=day*wdN; total+=amt;
+    h+='<h2>平日延長工時</h2>';
+    h+=item('平日加班費（'+wdN+' 天）',money(amt),
+      '前 2 小時：每小時至少 '+ws+' + '+ws+' × ⅓ = '+f2(r1)+' 元 '+law('勞基法第24條第1項第1款')+'。<br>'+
+      (c>0?'第 3、4 小時：每小時至少 '+ws+' + '+ws+' × ⅔ = '+f2(r2)+' 元 '+law('勞基法第24條第1項第2款')+'。<br>':'')+
+      '算式：('+a+' × '+f2(r1)+(c>0?' + '+c+' × '+f2(r2):'')+') × '+wdN+' 天。');
+    if(over>0)warns+='<div class="warn">平日正常工時 8 小時，再延長 '+wdH+' 小時，一天超過 12 小時 '+law('勞基法第32條第2項')+'。超過 4 小時的那 '+over+' 小時，第24條沒有對應的倍率，本工具沒有算進去。</div>';
+  }
+  if(rdH>0&&rdN>0){
+    var a2=Math.min(rdH,2), c2=Math.max(rdH-2,0);
+    var s1=w*(1+1/3), s2=w*(1+2/3), one=a2*s1+c2*s2, amt2=one*rdN; total+=amt2;
+    h+='<h2>休息日工作</h2>';
+    h+=item('休息日「另再加給」（'+rdN+' 次）',money(amt2),
+      '前 2 小時：每小時另再加給 '+ws+' × 1⅓ = '+f2(s1)+' 元以上 '+law('勞基法第24條第2項')+'。<br>'+
+      (c2>0?'2 小時後：每小時另再加給 '+ws+' × 1⅔ = '+f2(s2)+' 元以上 '+law('勞基法第24條第2項')+'。<br>':'')+
+      '算式：('+a2+' × '+f2(s1)+(c2>0?' + '+c2+' × '+f2(s2):'')+') × '+rdN+' 次。<br>'+
+      '這只是第24條第2項的「另再加給」。休息日原本的工資由雇主照給 '+law('勞基法第39條')+'，月薪裡有沒有含，請對照你的薪資約定。');
+    if(rdH>12)warns+='<div class="warn">休息日一次工作 '+rdH+' 小時。第32條第2項規定延長工時連同正常工時一天不超過 12 小時；休息日沒有正常工時，怎麼套這個上限，條文沒寫清楚，請自行確認。</div>';
+  }
+  if(hdN>0){
+    var amt3=w*8*hdN; total+=amt3;
+    h+='<h2>國定假日出勤</h2>';
+    h+=item('國定假日加倍的部分（'+hdN+' 天）',money(amt3),
+      '經你同意在休假日工作，工資加倍發給 '+law('勞基法第39條')+'。休假日指內政部所定應放假的紀念日、節日、勞動節等 '+law('勞基法第37條第1項')+'。<br>'+
+      '算式：'+ws+' × 8 小時 × '+hdN+' 天。條文沒寫一日工資怎麼算，用「時薪 × 8」估是本工具的設定 '+law('本工具設定',1)+'。<br>'+
+      '當天超過 8 小時的部分怎麼算，第39條沒寫，本工具不算。');
+  }
+  if(!h){out.innerHTML='<p class="note">填上加班時數和天數，結果會出現在這裡。</p>';return}
+  if(total>0)h+=item('這個月的加班費合計（法定最低）',money(total),'以上各項相加。條文都寫「以上」，雇主可以給更多。','total');
+
+  // 上限檢查
+  var ext=wdH*wdN+rdH*rdN;
+  h+='<h2>延長工時上限</h2>';
+  var st=ext>54?'超過 54 小時':(ext>46?'超過 46 小時，未超過 54 小時':'未超過 46 小時');
+  h+=item('這個月延長工時合計',f2(ext)+' 小時（'+st+'）',
+    '平日延長 '+f2(wdH*wdN)+' 小時 + 休息日工作 '+f2(rdH*rdN)+' 小時。休息日工作的時間，要計入延長工時總數 '+law('勞基法第36條第3項')+' '+law('施行細則第20條之1')+'。<br>'+
+    '延長工時一個月不超過 46 小時；經工會同意，沒有工會的經勞資會議同意，可到 54 小時 '+law('勞基法第32條第2項')+'。');
+  out.innerHTML=warns+h;
+}
+['w','wdH','wdN','rdH','rdN','hdN'].forEach(function(id){$(id).addEventListener('input',render)});
+$('f').addEventListener('submit',function(e){e.preventDefault()});
+render();
+})();
+</script>

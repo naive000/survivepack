@@ -1,0 +1,31 @@
+/* 變動快報頁專用樣式（接在 site.css 後）。只用 site.css 的 token，深色模式自動跟著換。 */
+.changes .lead{margin-bottom:16px}
+.ch-sub{display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px;margin:0 0 24px}
+.ch-sub p{margin:0;font-size:15px;color:var(--ink-2)}
+.ch-day{margin:0 0 28px}
+.ch-day>h2{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 12px;margin:0 0 12px;padding-bottom:6px;border-bottom:2px solid var(--line);font-size:20px}
+.ch-day>h2 small{font-size:14px;font-weight:500;color:var(--ink-3)}
+.ch-card{margin:0 0 16px;padding:14px 16px;border:1px solid var(--line);border-radius:12px;background:var(--card);box-shadow:var(--shadow)}
+.ch-card:target{border-color:var(--brand);box-shadow:0 0 0 3px var(--brand-wash)}
+.ch-card h3{margin:0 0 6px;font-size:19px;line-height:1.5}
+.ch-card h3 a{display:inline-block;min-height:44px;padding:8px 0;line-height:1.5}
+.ch-card dl{margin:0 0 12px;display:grid;grid-template-columns:auto 1fr;gap:4px 16px;font-size:16px;line-height:1.7}
+.ch-card dt{color:var(--ink-3);font-size:14px;font-weight:600;padding-top:2px;white-space:nowrap}
+.ch-card dd{margin:0;min-width:0;overflow-wrap:anywhere}
+.ch-card h4{margin:0 0 4px;font-size:14px;font-weight:700;color:var(--ink-3)}
+.ch-list{margin:0;padding:0;list-style:none}
+.ch-list li{display:flex;flex-wrap:wrap;align-items:center;gap:2px 8px;padding:8px 0;min-height:44px}
+.ch-list li+li{border-top:1px solid var(--line)}
+.ch-et{flex:1 1 100%;font-size:16px;line-height:1.6;overflow-wrap:anywhere}
+a.ch-et{display:block;padding:6px 0;min-height:44px;display:flex;align-items:center}
+.ch-list small{flex:1 1 100%;font-size:14px;color:var(--ink-3);line-height:1.6}
+.ch-hit{flex:1 1 100%;font-size:15px;line-height:1.6;color:var(--ink-2)}
+.ch-note{margin:-12px 0 24px;font-size:15px;color:var(--ink-2)}
+.ch-none{margin:0;font-size:15px;color:var(--ink-3)}
+.ch-src{margin:8px 0 0;font-size:14px;color:var(--ink-3);line-height:1.75}
+@media (max-width:640px){
+  .ch-card dl{grid-template-columns:1fr;gap:0}
+  .ch-card dt{padding-top:6px}
+  .ch-card dt:first-child{padding-top:0}
+}
+.changes-doc .crumb a{display:inline-flex;align-items:center;min-height:44px;padding:0}

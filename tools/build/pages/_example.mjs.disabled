@@ -1,0 +1,45 @@
+// 頁面模組範本。副檔名不是 .mjs，所以不會被載入；要用就複製成 tools/build/pages/<序號>-<名稱>.mjs。
+//
+// 規則：
+// - build.mjs 在寫完 e/、assets/index.json、llms*.txt 之後，依檔名排序執行 tools/build/pages/*.mjs（底線開頭的檔略過）。
+//   要控制順序就在檔名加序號，例如 30-scenarios.mjs、40-changes.mjs。
+// - 每個模組 export async function build(ctx)。丟出的錯誤會印出模組檔名並讓整個建置失敗，不會被吞掉。
+// - 模組只寫自己的輸出（例如 s/、changes/），不要改 e/、sitemap.xml、llms*.txt 與別的模組的輸出。
+// - 想進 sitemap.xml 的網址用 ctx.addUrl(相對路徑, { priority?, lastmod? }) 回報，不要自己寫 sitemap.xml。
+// - 路徑一律用相對：layout 依 depth 算 assets 與連結，不要寫死 / 開頭的絕對路徑
+//   （站同時放在 /survivepack/ 子路徑與日後網域根目錄）。
+//
+// ctx 欄位：
+//   entries   全部條目（含解析後欄位：id、title、human、cost、gain、proc、note、src、grade、gradeText、lens、level、
+//             money/time/will、ratio（性價比檔，收益 ? 時為空字串）、dispute、disputeType、meta['核實日期']／['法源條號']…、
+//             sec（所屬章節）、pos（章內順序）），章內已按性價比排序
+//   secs      章節陣列 { index, title, slug, intro, entries }
+//   index     assets/index.json 的內容（精簡列：id、sec、title、human 前 80 字、lens、grade、money、time、will、level、ratio、
+//             verified、law、review、reviewAny、dispute、disputeType；缺欄位＝空字串或 0）
+//   outDir    repo 根目錄（絕對路徑）
+//   layout    page({ title, description, body, depth, canonical, ogImage?, extraHead?, active?, ... })，回傳完整 HTML 字串
+//   layoutLib { page, toolbar, TOOLBAR }
+//   helpers   esc、rel(depth, to)、siteUrl(path)、entryUrl(id)、makeInline(ids, hrefPrefix)、ratioFor(entry)、needsReview(entry)、
+//             clip、plainText、jsonLd、NAME、SLOGAN、DISCLAIMER、LENS_LABEL、LABEL、RATIO_RANK…（見 lib/helpers.mjs）
+//   site      網站根網址（帶結尾 /，環境變數 SITE_URL 可覆寫）
+//   today     YYYY-MM-DD（台北時間）
+//   writeFile (相對 repo 根的路徑, 內容)，自動建目錄
+//   addUrl    (相對站根的路徑, { priority?, lastmod? })
+//
+// 下面是一個最小可用的例子（把 .disabled 拿掉就會產生 example/index.html）：
+
+export async function build(ctx) {
+  const { layout, helpers: H } = ctx;
+  const top = ctx.entries.filter(e => e.ratio === '極高').slice(0, 5);
+  const body = `<h1>範例頁</h1>
+<ul class="tiles">
+${top.map(e => `<li><a class="tile" href="../e/${e.id}/"><b>${H.esc(e.title)}</b><small>${H.esc(H.clip(e.human, 40))}</small></a></li>`).join('\n')}
+</ul>`;
+  ctx.writeFile('example/index.html', layout({
+    title: '範例頁', description: '頁面模組範本產生的頁面。', body,
+    depth: 1,                                   // example/index.html 在站根下一層
+    canonical: H.siteUrl('example/'),
+    active: ''                                  // 'calc' | 'changes' | 'search' | 'all'：工具列標示目前所在
+  }));
+  ctx.addUrl('example/', { priority: '0.5' });
+}

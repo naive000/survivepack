@@ -2,7 +2,7 @@
 
 ## eternity4719/HowToLiveBetter（MIT）
 
-本專案的網頁版面與前端程式（`index.html` 的樣式與篩選、搜尋、深色模式等邏輯）改編自
+本專案的網頁版面與前端程式（`index.html`、`assets/home.js`、`assets/home.css` 的樣式與篩選側欄、章節目錄、搜尋、手機抽屜、深色模式等邏輯）改編自
 [eternity4719/HowToLiveBetter](https://github.com/eternity4719/HowToLiveBetter) 的 `index.html`，依其 MIT 授權保留以下聲明：
 
 ```

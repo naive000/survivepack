@@ -48,3 +48,8 @@
 - NCBI E-utilities 摘要（2026-10-03）：PMID 39636389、32391934、38771265（Nowak：「no effect of the therapy on all-cause mortality」「heart failure (28% risk increase)」與備註一致）。只讀摘要。
 - curl（2026-10-03）：https://dep.mohw.gov.tw/pro/cp-2731-76110-120.html，建檔與更新 112-09-27（2023-09-27），與條目一致，條目已標超過三年。
 - 未能重讀：無。
+
+### 2026-11-09 元敘述移出
+
+- 欄位「來源」原句：「，只讀摘要）」（已從 book/health.md 移除，改為「）」）
+- 欄位「備註」原句：「本條的期刊來源只讀摘要，未讀全文。」（已從 book/health.md 移除）

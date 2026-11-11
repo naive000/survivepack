@@ -41,3 +41,7 @@
 - NCBI E-utilities 摘要（2026-10-02）：PMID 26756588、23737396。
 - BrowserOS neo（browserclaw，正常憑證驗證）：國健署乳癌防治頁、癌症篩檢訊息頁（curl 對 hpa.gov.tw TLS 驗證失敗，未用 -k）。
 - 未能重讀：無。PMID 26756737（Harms）這次未重開，條目相關數字未改。
+
+### 2026-11-09 元敘述移出
+
+- 欄位「來源」原句：「（PubMed PMID 23737396，僅讀摘要）」（已從 book/health.md 移除，改為「（PubMed PMID 23737396）」）

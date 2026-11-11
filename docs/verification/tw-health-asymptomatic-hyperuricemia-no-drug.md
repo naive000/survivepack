@@ -42,3 +42,30 @@
 
 ### 這次重讀的來源
 - NCBI E-utilities 摘要（2026-10-03）：PMID 30177485、33342914、32391934、29363262、35739495。只讀摘要，未讀全文。ACR 2020 不建議對 CKD／CVD 無症狀高尿酸用藥、日本指引建議 CKD 用藥（33342914），台灣共識目標 <6.0、痛風石 <5.0 mg/dL（29363262），與條目一致。
+
+### 2026-11-09 元敘述移出
+
+- 欄位「備註」原句：「本條只讀摘要，不下個案結論。」（已從 book/health.md 移除）
+
+### 2026-11-10 母專案複查補強
+
+來源報告：recheck-2 的 06-19（數字複查）。
+
+自行重開的來源（2026-11-10，PMC 全文，PMC10563586，ACR 2020 Gout Guideline，PMID 32391934）：
+- Table 1：「For patients with asymptomatic hyperuricemia (SU >6.8 mg/dl with no prior gout flares or subcutaneous tophi), we conditionally recommend against initiating any pharmacologic ULT (allopurinol, febuxostat, probenecid)」。
+- 「For patients with 1 or more subcutaneous tophi, we strongly recommend initiating ULT」；「radiographic damage (any modality) attributable to gout, we strongly recommend」；「frequent gout flares (≥2/year), we strongly recommend」；「previously experienced >1 flare but have infrequent flares (<2/year), we conditionally recommend initiating ULT」。
+- 內文：「The Voting Panel felt that, on average, for the majority of patients with asymptomatic hyperuricemia (including those with comorbid CKD, CVD, urolithiasis, or hypertension), the benefits of ULT would not outweigh potential treatment costs or risks」。
+
+複查結果（兩處與條目不符）：
+1. 條目寫「ACR 2020 指引不建議對有慢性腎臟病或心血管疾病的無症狀高尿酸病人用藥」。原文是對無症狀高尿酸整體「有條件地建議不要」，共病（CKD、CVD 等）只是投票小組理由中提到的族群，指引另寫它「不直接處理」高尿酸對共病的影響。強度是「有條件」，不是「不建議」。
+2. 條目寫「頻繁發作」沒有門檻與強度分級，原文是每年 2 次以上強烈建議；發作過不只 1 次但每年少於 2 次是有條件建議。
+
+改了哪些句子（說人話）：
+- 「美國風濕病學會 2020 指引不建議對有慢性腎臟病或心血管疾病的無症狀高尿酸病人用藥」→「美國風濕病學會 2020 指引對這類人有條件地建議不要開始用降尿酸藥，也就是血尿酸高於 6.8 mg/dL、沒有痛風發作、沒有痛風石的人。指引說明，多數這類病人即使合併慢性腎臟病或心血管疾病，用藥的好處也不大於成本與風險。」
+- 「強烈建議有痛風石、影像上看到關節損傷或頻繁發作的人用藥」→「強烈建議有痛風石、影像上看到痛風造成的關節損傷，或每年發作 2 次以上的人用藥；發作過不只 1 次、但每年少於 2 次的人，則是有條件地建議用藥。」
+- 核實日期維持 2026-10-03（其他四個來源這次未重開）。
+- 日本指引、台灣共識的句子未動（這次沒重開）。
+
+### 2026-11-10 Opus 驗收後修正
+- 說人話：ACR 句拆成「…不要開始用降尿酸藥。這類人指…的人。」；「指引說明」改「指引的投票小組認為」；試驗句與「強烈建議…」句各在分號或逗號處拆成兩句。數字未動。
+- 核實日期與「待專業審核」字面未動。

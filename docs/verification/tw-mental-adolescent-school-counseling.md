@@ -78,3 +78,12 @@
 - 醫學・需判斷（Guzman-Holst 2025 負面結果次群組能否套用個別輔導）：**待專業審核**。前一節記「未改」，本次在備註補一句。摘要原句：「Negative outcomes were found for a number of subgroups including individuals deemed at high risk…, male participants, younger children…」。
 
 新增內容檢查：說人話、收益、備註新增的條號與數字，都能在上列原文找到；沒有新增出處。
+
+### 2026-11-09 元敘述移出
+
+以下核實方式說明原寫在 book/ 條目正文，依寫作規則（不用元敘述）移出。
+
+- 原位置：來源；原句：「，僅讀摘要）」（正文改為：「）」）
+- 原位置：來源；原句：「，僅讀摘要）」（正文改為：「）」）
+- 原位置：來源；原句：「，僅讀摘要）」（正文改為：「）」）
+- 原位置：備註；原句：「只讀了 PubMed 摘要。」（整句刪除）

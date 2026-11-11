@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-TW">
+<title>台灣生存包｜變動快報</title>
+<subtitle>本站條目引用的法規被修正的紀錄（只列法規名、修正日期、有變條號與受影響條目數）</subtitle>
+<id>https://naive000.github.io/survivepack/changes/</id>
+<link rel="self" type="application/atom+xml" href="https://naive000.github.io/survivepack/feed.xml"/>
+<link rel="alternate" type="text/html" href="https://naive000.github.io/survivepack/changes/"/>
+<updated>2026-10-14T00:00:00+08:00</updated>
+<author><name>台灣生存包</name></author>
+<entry>
+<title>《勞工請假規則》修正</title>
+<id>https://naive000.github.io/survivepack/changes/#c-2026-10-14-n0030006</id>
+<link rel="alternate" type="text/html" href="https://naive000.github.io/survivepack/changes/#c-2026-10-14-n0030006"/>
+<updated>2026-10-14T00:00:00+08:00</updated>
+<summary type="text">法規：勞工請假規則；修正日期：2026-09-30；內容有變的條號：第2條、第12條；本站受影響條目：3 條</summary>
+</entry>
+<entry>
+<title>《高級中等教育法》修正</title>
+<id>https://naive000.github.io/survivepack/changes/#c-2026-10-08-h0060043</id>
+<link rel="alternate" type="text/html" href="https://naive000.github.io/survivepack/changes/#c-2026-10-08-h0060043"/>
+<updated>2026-10-08T00:00:00+08:00</updated>
+<summary type="text">法規：高級中等教育法；修正日期：2026-09-23；內容有變的條號：第58條；本站受影響條目：3 條</summary>
+</entry>
+<entry>
+<title>《醫療法》修正</title>
+<id>https://naive000.github.io/survivepack/changes/#c-2026-10-08-l0020021</id>
+<link rel="alternate" type="text/html" href="https://naive000.github.io/survivepack/changes/#c-2026-10-08-l0020021"/>
+<updated>2026-10-08T00:00:00+08:00</updated>
+<summary type="text">法規：醫療法；修正日期：2026-09-23；內容有變的條號：第24條、第49條、第50條、第53條、第72條、第84條、第88條、第100-1條、第106條、第107條、第114-1條；本站受影響條目：8 條</summary>
+</entry>
+<entry>
+<title>《能源管理法》修正</title>
+<id>https://naive000.github.io/survivepack/changes/#c-2026-10-08-j0130002</id>
+<link rel="alternate" type="text/html" href="https://naive000.github.io/survivepack/changes/#c-2026-10-08-j0130002"/>
+<updated>2026-10-08T00:00:00+08:00</updated>
+<summary type="text">法規：能源管理法；修正日期：2026-09-23；內容有變的條號：第2條、第6條、第6-1條、第7條、第9條、第10條、第18條、第19-1條、第20條、第20-1條、第21條、第22條、第23條、第24條、第29條；本站受影響條目：1 條</summary>
+</entry>
+<entry>
+<title>《學校衛生法》修正</title>
+<id>https://naive000.github.io/survivepack/changes/#c-2026-10-08-h0020050</id>
+<link rel="alternate" type="text/html" href="https://naive000.github.io/survivepack/changes/#c-2026-10-08-h0020050"/>
+<updated>2026-10-08T00:00:00+08:00</updated>
+<summary type="text">法規：學校衛生法；修正日期：2026-09-23；內容有變的條號：第5條、第6條、第11條、第16條、第17條、第19條、第24條；本站受影響條目：2 條</summary>
+</entry>
+<entry>
+<title>《大學法》修正</title>
+<id>https://naive000.github.io/survivepack/changes/#c-2026-10-08-h0030001</id>
+<link rel="alternate" type="text/html" href="https://naive000.github.io/survivepack/changes/#c-2026-10-08-h0030001"/>
+<updated>2026-10-08T00:00:00+08:00</updated>
+<summary type="text">法規：大學法；修正日期：2026-09-23；內容有變的條號：第35條；本站受影響條目：1 條</summary>
+</entry>
+</feed>

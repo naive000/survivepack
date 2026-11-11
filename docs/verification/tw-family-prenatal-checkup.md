@@ -23,3 +23,29 @@
 - 孕產婦關懷諮詢專線：不在專線白名單，號碼不寫。
 
 - 重驗：條目「失效條件」所列法規或公告修正就要重核；金額與年度數字每年重驗。
+
+### 2026-11-10 母專案複查補強
+
+來源報告：recheck-5 的 27-6（必補）。台灣官方依據優先。
+
+自行重開的來源（2026-11-10，瀏覽器）：
+- 國民健康署健康99〈孕媽咪5招遠離妊娠糖尿病 控糖輕鬆零負擔〉（發布日期 2024/06/07，https://health99.hpa.gov.tw/health99/S/D/8/1016）：「對媽媽來說，可能增加流產、早產、提高剖腹產率以及產後發生第二型糖尿病的風險」。
+- 中華民國糖尿病學會《2018妊娠期糖尿病照護手冊》（國民健康署健康99衛教資源收錄，PDF 登錄號 22220，2018-11 初版，發行單位為學會，不是主管機關）第 9 節：「診斷為GDM的婦女，日後仍有較高的比例發展成糖尿病前期或糖尿病 (大部分為第2型)」「產後第一次追蹤的時間，建議在產後6-12週時進行」「建議使用75g OGTT，測定空腹與兩小時血糖」「之後每1-3年篩檢一次」。頁面超過 3 年，所以另找新來源對照。
+- CDC，Gestational Diabetes（頁面標 May 15, 2024，https://www.cdc.gov/diabetes/about/gestational-diabetes.html）：「About half of women with gestational diabetes go on to develop type 2 diabetes. Talk to your doctor about how to lower your risk. Ask how often to have your blood sugar checked to make sure you're on track.」
+- ADA，Standards of Care in Diabetes—2025，第 15 章（doi 10.2337/dc25-S015，Diabetes Care 2025;48(Suppl 1):S306–S320）：「15.30 Screen individuals with a recent history of GDM at 4–12 weeks postpartum, using the 75-g oral glucose tolerance test」「15.31 ... lifelong screening ... every 1–3 years」；內文「The OGTT is recommended over A1C at 4–12 weeks postpartum」。
+
+改了哪些句子：
+- 說人話：末尾加「若篩檢確診妊娠糖尿病，生完不代表就結束……」（約一半、6 至 12 週耐受試驗、每 1 至 3 年）。
+- 收益：加國健署與 CDC 的引句，並寫「產後追蹤本身能降低多少併發症，來源沒有數字」。
+- 來源：新增國健署文章、學會手冊、CDC、ADA。
+- 過程成本：加「產後血糖追蹤的檢驗費用與是否健保給付，來源未載明」。
+- 備註：加兩份指引起算週數差異（學會 6–12 週；ADA 4–12 週），都用耐受試驗。
+- 失效條件：加「產後血糖追蹤的建議時程改變」。
+- 核實日期維持 2026-10-01（法條三條與衛福部 14 次產檢頁這次未重開）。
+- 沒寫：台灣健保是否給付產後耐受試驗（沒查到官方文件）；糖尿病學會手冊不是主管機關發布，只在句中標明「糖尿病學會的照護手冊建議」。
+
+### 2026-11-10 Opus 驗收後修正
+- 備註 a：糖化血色素適用範圍。原「兩者都建議用耐受試驗，不用糖化血色素」改為兩者都建議「第一次」用 75 克葡萄糖耐受試驗；之後每 1 至 3 年篩檢時，ADA 寫可以改用糖化血色素等檢驗（依 Opus 重開 ADA 2025 原文）。
+- 說人話 b：「之後每 1 至 3 年再篩檢」改為「結果正常的人，之後每 1 至 3 年再篩檢一次」（手冊圖一：前期者每年）。
+- 收益：英文原句改中譯並標美國疾管署：「約有一半的妊娠糖尿病女性，日後會發展成第二型糖尿病」。
+- 核實日期與「待專業審核」字面未動。

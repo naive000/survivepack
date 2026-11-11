@@ -22,3 +22,16 @@
 - 血清不良反應的處理：本條未引，未寫入。
 
 - 重驗：條目「失效條件」所列法規或公告修正就要重核；金額與年度數字每年重驗。
+
+### 2026-11-09 元敘述移出
+
+以下核實方式說明原寫在 book/ 條目正文，依寫作規則（不用元敘述）移出。
+
+- 原位置：來源；原句：「，只讀摘要）」（正文改為：「）」）
+
+### 2026-11-09 與國際指引差異的處理
+
+- 方針同上。自行開啟核對：疾管署 2025-04-01 頁（curl 取得，含「要包紮傷口上緣，減緩毒液擴散」；頁面日期 2025-04-01）；WHO Animal bites（頁面標示 12 January 2024）含「avoid tourniquets and cutting wounds」；IFRC 2025 指引 PDF（markitdown 轉文字）含「A tourniquet should not be applied to snake envenomation…」「Limb injuries can be kept still as much as possible…」「pressure immobilization technique」。
+- 官方各頁沒有寫包紮的鬆緊或器材，也沒有提到止血帶；條目不替官方詮釋。
+- 改動：備註新增「爭議（證據）」，來源補 WHO、IFRC。
+- 未重核：2025-07-29 頁、儲備點查詢、PubMed，核實日期維持 2026-10-01。agent 提到的 2026-03-24 疾管署頁，主 session 未重開，不引。

@@ -1,0 +1,213 @@
+/* 台灣生存包 共用樣式。所有 build 產生的頁面都連到這一份，不再內嵌。
+   品牌性格「號誌」：暖白底、深墨字、品牌橘；綠＝安全、琥珀＝注意、紅＝危險。
+   深色模式兩處：@media (prefers-color-scheme: dark) 配 :root:not([data-theme="light"])，以及 :root[data-theme="dark"]。
+   主題切換由 <head> 的小段 script 設 data-theme，點切換鈕會寫 localStorage('theme')。沒有 JS 就只吃系統偏好。
+   只用系統字體，不載任何外部字型。 */
+
+:root{
+  --paper:#FBF8F3; --paper-2:#F3EEE5; --card:#FFFFFF; --line:#E3DACB; --line-2:#CFC4B1;
+  --ink:#1C1A17; --ink-2:#4A453E; --ink-3:#6B645A;
+  --brand:#C2410C; --brand-ink:#9A3412; --brand-wash:rgba(194,65,12,.10); --on-brand:#FFFFFF;
+  --safe:#166534; --safe-wash:rgba(22,101,52,.11);
+  --warn:#92400E; --warn-wash:rgba(217,119,6,.15);
+  --danger:#B91C1C; --danger-wash:rgba(185,28,28,.09);
+  --mute:#5B554C; --mute-wash:rgba(107,100,90,.13);
+  --mark:rgba(250,204,21,.45);
+  --shadow:0 1px 2px rgba(28,26,23,.06);
+  --font:-apple-system,BlinkMacSystemFont,"PingFang TC","Noto Sans TC","Microsoft JhengHei","Heiti TC",system-ui,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --head-h:56px; --tool-h:56px; --read:44rem; --wide:62rem;
+  color-scheme:light;
+}
+:root[data-theme="dark"]{
+  --paper:#12110F; --paper-2:#1C1A17; --card:#1C1A17; --line:#34302A; --line-2:#4A453E;
+  --ink:#F5F1EA; --ink-2:#D2CABD; --ink-3:#A39B8D;
+  --brand:#FB923C; --brand-ink:#FDBA74; --brand-wash:rgba(251,146,60,.14); --on-brand:#12110F;
+  --safe:#4ADE80; --safe-wash:rgba(74,222,128,.13);
+  --warn:#FBBF24; --warn-wash:rgba(251,191,36,.14);
+  --danger:#F87171; --danger-wash:rgba(248,113,113,.13);
+  --mute:#B5AC9D; --mute-wash:rgba(163,155,141,.16);
+  --mark:rgba(250,204,21,.28);
+  --shadow:0 1px 2px rgba(0,0,0,.4);
+  color-scheme:dark;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#12110F; --paper-2:#1C1A17; --card:#1C1A17; --line:#34302A; --line-2:#4A453E;
+    --ink:#F5F1EA; --ink-2:#D2CABD; --ink-3:#A39B8D;
+    --brand:#FB923C; --brand-ink:#FDBA74; --brand-wash:rgba(251,146,60,.14); --on-brand:#12110F;
+    --safe:#4ADE80; --safe-wash:rgba(74,222,128,.13);
+    --warn:#FBBF24; --warn-wash:rgba(251,191,36,.14);
+    --danger:#F87171; --danger-wash:rgba(248,113,113,.13);
+    --mute:#B5AC9D; --mute-wash:rgba(163,155,141,.16);
+    --mark:rgba(250,204,21,.28);
+    --shadow:0 1px 2px rgba(0,0,0,.4);
+    color-scheme:dark;
+  }
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%;scrollbar-gutter:stable;scroll-padding-top:calc(var(--head-h) + 12px)}
+body{
+  margin:0;min-width:0;background:var(--paper);color:var(--ink);
+  font:17px/1.8 var(--font);
+  line-break:strict;text-wrap:pretty;overflow-wrap:break-word;
+  font-variant-numeric:tabular-nums;
+  -webkit-font-smoothing:antialiased;
+  padding-bottom:calc(var(--tool-h) + env(safe-area-inset-bottom,0px));
+}
+em,i,cite,address,dfn,var{font-style:normal}
+h1,h2,h3{text-wrap:balance;line-height:1.4;margin:0}
+p{margin:0 0 .75em}
+a{color:var(--brand);text-decoration:none;text-underline-offset:3px}
+a:hover{text-decoration:underline}
+button,input,select,textarea{font:inherit;color:inherit}
+button{background:none;border:0;padding:0;cursor:pointer}
+:focus-visible{outline:3px solid var(--brand);outline-offset:2px;border-radius:4px}
+[hidden]{display:none!important}
+mark{background:var(--mark);color:inherit;border-radius:2px;padding:0 1px}
+img,svg{max-width:100%}
+code{font-family:var(--mono);font-size:.9em}
+.skip{position:absolute;left:-999px;top:8px;z-index:100;background:var(--brand);color:var(--on-brand);padding:10px 16px;border-radius:8px;font-weight:700}
+.skip:focus{left:8px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ---------- 頂部列 ---------- */
+.site-head{position:sticky;top:0;z-index:30;background:var(--paper);border-bottom:1px solid var(--line)}
+.head-in{max-width:var(--wide);height:var(--head-h);margin:0 auto;padding:0 8px 0 16px;display:flex;align-items:center;gap:8px}
+.brand{display:flex;align-items:center;gap:10px;min-height:44px;font-size:18px;font-weight:800;color:var(--ink);white-space:nowrap}
+.brand:hover{text-decoration:none}
+.logo{flex:none;width:22px;height:30px}
+.slogan{display:none;color:var(--ink-3);font-size:14px;white-space:nowrap}
+.head-sp{flex:1}
+.hsearch{display:flex;align-items:center;justify-content:center;gap:8px;min-width:44px;min-height:44px;padding:0 12px;border:1px solid var(--line);border-radius:22px;background:var(--paper-2);color:var(--ink-3);font-size:15px;white-space:nowrap}
+.hsearch:hover{text-decoration:none;border-color:var(--line-2)}
+.hsearch svg{width:20px;height:20px;flex:none;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
+.hsearch span{display:none}
+.theme-btn{flex:none;width:44px;height:44px;display:grid;place-items:center;border-radius:22px}
+.theme-btn:hover{background:var(--paper-2)}
+.switch{position:relative;display:block;width:38px;height:22px;border-radius:11px;border:1px solid var(--line-2);background:var(--paper-2)}
+.switch .knob{position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:var(--ink-3);transition:transform .2s}
+:root[data-theme="dark"] .switch .knob{transform:translateX(16px);background:var(--brand)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .switch .knob{transform:translateX(16px);background:var(--brand)}}
+@media (min-width:640px){.hsearch span{display:inline}.slogan{display:inline}.head-in{padding-left:24px}}
+
+/* ---------- 底部固定工具列（純連結，無 JS 也能用） ---------- */
+.toolbar{position:fixed;left:0;right:0;bottom:0;z-index:40;background:var(--paper);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px)}
+.toolbar-in{max-width:34rem;margin:0 auto;display:flex}
+.toolbar a{flex:1;min-width:0;min-height:var(--tool-h);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;color:var(--ink-2);font-size:13px;font-weight:700;line-height:1.2}
+.toolbar a:hover{text-decoration:none;background:var(--paper-2)}
+.toolbar a[aria-current]{color:var(--brand)}
+.toolbar svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+
+/* ---------- 版面 ---------- */
+.doc{max-width:var(--read);margin:0 auto;padding:20px 16px 24px}
+.doc.wide{max-width:var(--wide)}
+.crumb{font-size:14px;color:var(--ink-3);margin:0 0 12px;line-height:1.6}
+.crumb a{color:var(--ink-2);display:inline-block;min-height:44px;padding:10px 0}
+h1{font-size:26px;font-weight:800;letter-spacing:0;margin-bottom:12px;overflow-wrap:anywhere}
+h2{font-size:20px;font-weight:700}
+.lead{margin:0 0 16px;padding:12px 16px;border-left:4px solid var(--brand);background:var(--brand-wash);border-radius:0 8px 8px 0;line-height:1.8}
+
+/* ---------- 標籤 ---------- */
+.signals,.badges{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:0 0 16px}
+.badge{display:inline-flex;align-items:center;min-height:28px;padding:0 12px;border-radius:14px;font-size:14px;font-weight:700;line-height:1.2;white-space:nowrap;background:var(--mute-wash);color:var(--mute)}
+.badge.r3{background:var(--brand);color:var(--on-brand)}
+.badge.r2{background:var(--safe-wash);color:var(--safe)}
+.badge.r1{background:var(--mute-wash);color:var(--mute)}
+.badge.A{background:var(--safe-wash);color:var(--safe)}
+.badge.B{background:var(--warn-wash);color:var(--warn)}
+.badge.C{background:var(--mute-wash);color:var(--mute)}
+.badge.danger{background:var(--danger-wash);color:var(--danger)}
+.badge.warn,.badge.review{background:var(--warn-wash);color:var(--warn)}
+.badge.review{border:1px solid currentColor}
+.badge.plain{background:transparent;border:1px solid var(--line);color:var(--ink-2);font-weight:500}
+.badge.unk{background:transparent;color:var(--ink-3);font-weight:500;padding:0 2px;white-space:normal}
+.dhelp{margin:-6px 0 16px;font-size:15px;color:var(--ink-2)}
+
+/* ---------- 待專業審核橫幅 ---------- */
+.review{margin:0 0 16px;padding:14px 16px;border:2px solid var(--danger);border-radius:10px;background:var(--danger-wash);color:var(--danger);font-weight:700;line-height:1.7}
+.review span{display:block;margin-top:2px;font-weight:400;font-size:15px;color:var(--ink)}
+
+/* ---------- 依據框（核實日期、法源、來源、過程成本；<details> 預設收合，摘要一行） ---------- */
+.basis{margin:0 0 20px;border:1px solid var(--line);border-left:4px solid var(--safe);border-radius:10px;background:var(--card)}
+.basis>summary{display:flex;flex-wrap:wrap;align-items:center;gap:2px 12px;min-height:48px;padding:8px 16px;cursor:pointer;list-style:none;font-size:15px;line-height:1.6}
+.basis>summary::-webkit-details-marker{display:none}
+.basis>summary::after{content:"展開 ▾";margin-left:auto;color:var(--brand);font-size:14px;font-weight:700;white-space:nowrap}
+.basis[open]>summary::after{content:"收起 ▴"}
+.basis>summary:hover{background:var(--paper-2)}
+.b-t{color:var(--ink-3);font-size:14px;font-weight:700}
+.b-v{flex:1 1 12rem;min-width:0;color:var(--ink);overflow-wrap:anywhere}
+.basis>dl{padding:4px 16px 14px;border-top:1px solid var(--line)}
+.calc-cta{margin:20px 0 12px}
+.calc-cta .btn{width:100%}
+.basis dl{margin:0;padding-top:10px;display:grid;grid-template-columns:auto 1fr;gap:8px 16px;font-size:16px;line-height:1.7}
+.basis dt{color:var(--ink-3);font-size:14px;font-weight:600;padding-top:2px;white-space:nowrap}
+.basis dd{margin:0;min-width:0;overflow-wrap:anywhere}
+.basis ol{margin:0;padding:0;list-style:none;counter-reset:s}
+.basis li{counter-increment:s;position:relative;padding-left:22px;margin-bottom:6px}
+.basis li:last-child{margin-bottom:0}
+.basis li::before{content:counter(s) ".";position:absolute;left:0;top:10px;font-size:14px;color:var(--ink-3)}
+.basis li a{display:inline-block;padding:10px 0;line-height:1.6}
+.ln{display:block;margin-bottom:6px}
+.ln:last-child{margin-bottom:0}
+.xr{color:var(--brand);border-bottom:1px dashed currentColor}
+.xr:hover{text-decoration:none;border-bottom-style:solid}
+
+/* ---------- 本文區塊 ---------- */
+.blk{margin:0 0 18px}
+.blk h2{margin:0 0 4px;font-size:14px;font-weight:700;color:var(--ink-3)}
+.blk p{margin:0}
+.blk.human{padding:12px 16px;border-left:4px solid var(--brand);background:var(--brand-wash);border-radius:0 8px 8px 0}
+.blk.human p{font-size:18px;line-height:1.8}
+.blk.note p{color:var(--ink-2)}
+.blk strong,.basis strong{font-weight:700}
+
+/* ---------- 按鈕、卡片 ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 20px;border-radius:10px;background:var(--brand);color:var(--on-brand);font-size:16px;font-weight:700;line-height:1.3;text-align:center}
+.btn:hover{text-decoration:none;filter:brightness(.94)}
+.btn.ghost{background:transparent;color:var(--brand);border:2px solid var(--brand)}
+.tiles{display:grid;grid-template-columns:1fr;gap:12px;margin:0 0 20px;padding:0;list-style:none}
+.tile{display:block;min-height:44px;padding:14px 16px;border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--ink);box-shadow:var(--shadow)}
+.tile:hover{text-decoration:none;border-color:var(--brand)}
+.tile b{display:block;font-size:18px;line-height:1.5}
+.tile small{display:block;color:var(--ink-2);font-size:15px;line-height:1.6}
+@media (min-width:600px){.tiles{grid-template-columns:repeat(3,1fr)}}
+
+/* ---------- 表單（試算、搜尋） ---------- */
+input[type=search],input[type=text],input[type=number],input[type=date],select{width:100%;min-height:44px;padding:0 12px;border:1px solid var(--line-2);border-radius:8px;background:var(--card);color:var(--ink);font-size:16px}
+input:focus,select:focus{outline:0;border-color:var(--brand);box-shadow:0 0 0 3px var(--brand-wash)}
+form.s{display:flex;gap:8px;margin:0 0 20px}
+form.s input{flex:1;min-width:0}
+
+/* ---------- 同章導覽、頁尾 ---------- */
+.more{margin-top:28px;padding-top:16px;border-top:1px solid var(--line)}
+.more h2{margin:0 0 4px;font-size:16px}
+.more ul{margin:0;padding:0;list-style:none}
+.more li a,.more li[aria-current]{display:flex;align-items:center;min-height:44px;font-size:16px;line-height:1.5}
+.more li[aria-current]{font-weight:700;color:var(--ink)}
+.more li a{color:var(--ink-2)}
+.more li+li{border-top:1px solid var(--line)}
+.site-foot{max-width:var(--read);margin:0 auto;padding:8px 16px 24px;color:var(--ink-3);font-size:14px;line-height:1.75}
+.site-foot p{margin:0 0 8px}
+.site-foot a{display:inline-block;min-height:44px;padding:10px 0;color:var(--ink-2);text-decoration:underline}
+.disclaimer{margin:0 0 12px;padding:12px 16px;border:1px solid var(--line);border-radius:10px;background:var(--paper-2);color:var(--ink-2);font-size:15px;line-height:1.75}
+.foot-note{margin-top:12px}
+
+@media (max-width:640px){
+  .doc{padding:16px 16px 20px}
+  h1{font-size:24px}
+  .basis dl{grid-template-columns:1fr;gap:2px}
+  .basis dt{padding-top:8px}
+  .basis dt:first-child{padding-top:0}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+@media print{.toolbar,.site-head,.skip{display:none}body{padding-bottom:0}}
+
+/* ---------- 共用元件：提示框、段落小標 ---------- */
+.callout{margin:0 0 24px;padding:18px 20px;border-radius:14px;background:var(--paper-2);border:1px solid var(--line)}
+.callout .badge{margin-bottom:8px}
+.callout h2{margin:0 0 8px;font-size:20px}
+.callout p{margin:0 0 12px}
+.callout .meta{font-size:14px;color:var(--ink-3)}
+.sec-t{margin:0 0 10px;font-size:17px;font-weight:700;color:var(--ink-2)}

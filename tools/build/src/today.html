@@ -1,0 +1,52 @@
+<!--meta {"title":"今日這條","description":"遇到事就打開：每天一條台灣生活法規重點，附官方原文出處與核實日期。被資遣、加班費、職災也能一鍵查。"} -->
+<h1>遇到事，先查這裡</h1>
+<p class="lead">按性價比排好的台灣生活法規，每條附官方原文與核實日期。</p>
+
+<section class="callout" id="sec-today" hidden aria-labelledby="t-h">
+  <span class="badge r3" id="t-h">今日這條</span>
+  <h2 id="t-title"></h2>
+  <p id="t-sum"></p>
+  <p class="meta" id="t-meta"></p>
+  <a class="btn" id="t-link" href="../">看完整條文</a>
+</section>
+
+<section id="sec-ctx" aria-labelledby="c-h">
+  <h2 class="sec-t" id="c-h">我遇到的是</h2>
+  <ul class="tiles">
+    <li><a class="tile" href="../#q=資遣"><b>被資遣</b><small>資遣費、預告期、離職證明</small></a></li>
+    <li><a class="tile" href="../#q=加班"><b>加班費</b><small>怎麼算、沒給怎麼辦</small></a></li>
+    <li><a class="tile" href="../#q=職災"><b>職災</b><small>補償、請假、通報</small></a></li>
+  </ul>
+</section>
+
+<section id="sec-search" aria-labelledby="s-h">
+  <h2 class="sec-t" id="s-h">或直接搜尋全站</h2>
+  <form class="s" id="f" action="../" method="get" role="search">
+    <input id="q" name="q" type="search" placeholder="例如：租屋押金、詐騙、健保" autocomplete="off" aria-label="搜尋全站條目">
+    <button class="btn" type="submit">搜尋</button>
+  </form>
+</section>
+<!--script-->
+<script>
+(function(){
+  // 搜尋：跳回首頁並帶 #q=（沒有 JS 時表單直接送 ../?q=）
+  document.getElementById('f').addEventListener('submit', function(ev){
+    ev.preventDefault();
+    var q = document.getElementById('q').value.trim();
+    location.href = q ? '../#q=' + encodeURIComponent(q) : '../';
+  });
+  // 今日這條：data/today.json 格式 {id,title,summary,date}；讀不到就只顯示情境入口與搜尋框
+  fetch('../data/today.json', { cache:'no-cache' }).then(function(r){
+    if (!r.ok) throw new Error(r.status); return r.json();
+  }).then(function(d){
+    if (!d || typeof d.title !== 'string' || typeof d.id !== 'string' || !/^tw-[a-z0-9]+(?:-[a-z0-9]+)*$/.test(d.id)) throw new Error('bad');
+    document.getElementById('t-title').textContent = d.title;
+    document.getElementById('t-sum').textContent = d.summary || '';
+    document.getElementById('t-sum').hidden = !d.summary;
+    document.getElementById('t-meta').textContent = d.date ? '更新日期 ' + d.date : '';
+    document.getElementById('t-meta').hidden = !d.date;
+    document.getElementById('t-link').href = '../e/' + d.id + '/';
+    document.getElementById('sec-today').hidden = false;
+  }).catch(function(){});
+})();
+</script>

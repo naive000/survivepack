@@ -1,0 +1,55 @@
+# 核實紀錄：tw-health-sleep-apnea-checkup
+
+進 `book/`：2026-11-10（階段 3 第二批，草稿 docs/new-entries/2026-11-10-5.md）。以下為草稿「核實紀錄」原文，小標題降級，內容未改；草稿的「建議放置」「給收錄者」「格式自查」等舊說明隨之保留，以本檔末段為準。
+
+## 核實日期與方式
+- 核實日期：2026-11-10。
+- 方式：健保署「支付標準查詢」頁（查詢「睡眠」與特材「陽壓」，開查詢明細）、全國法規資料庫《道路交通安全規則》《道路交通管理處罰條例》《傳染病防治法》的「沿革」頁與「所有條文」頁、歷史條文頁，在 BrowserOS（browserclaw）自行開啟；衛福部臺北醫院睡眠中心各頁、衛福部兩篇新聞衛教頁用 curl 取得文字；期刊用 NCBI E-utilities 查摘要（只讀摘要，沒讀全文）。條文原文的比對輔助用全國法規資料庫 Open API（ChLaw.json、ChOrder.json，2026-10-30 版，2026-11-10 下載）全文檢索，所有引用條文再由瀏覽器開現行頁面核對。沒有使用背景 agent 的回報。
+
+## 自行開啟核對的頁面
+1. 健保署支付標準查詢 https://info.nhi.gov.tw/INAE5000/INAE5001S01 ，關鍵字「睡眠」、「目前給付中的項目」，結果 4 筆：17008B 睡眠多項生理檢查 4535 點（104.02.01～999.12.31）、20001C 腦波檢查睡眠或清醒 990 點、20002C 腦波檢查睡眠及清醒 1943 點、20044B 多次入睡睡眠檢查 7623 點。明細頁（INAE5001S03）17008B：所屬章節第二部第二章第一節；備註逐字：「1.含EEG、EMG、ECG、EOG、respiratory airflow、thoracic respiratory effort、abdominal respiratory effort。2.適應症如下：(1)睡眠呼吸障礙、猝睡症、睡眠行為異常、parasomnia癲癇引起的睡眠中斷、神經肌肉疾病侷限性胸廓異常合併睡眠問題。(2)不得做慢性肺部疾病例行診斷。(3)「困難處理失眠症」之鑑別診斷。3. 內含一般材料費及單一使用拋棄式之過濾器。」頁面無更新日。
+2. 健保署特材查詢 https://info.nhi.gov.tw/INAE2000/INAE2000S01 ，品名「陽壓」：只有一筆「非侵入式陽壓通氣鼻管-半套」（特材代碼 CRG0212005HS，1,216 點，給付規定 A214-6）。不是正壓呼吸器主機，未用於條目；給付規定 A214-6 的內容未開啟。
+3. 衛福部臺北醫院睡眠中心（所屬機關頁面；四頁頁面顯示的更新日期皆為 2026-09-01，下列括號日期是頁面 HTML 註解內的內文日期；價格條目如實寫「只來自臺北醫院頁面」，2026-11-10 使用者定）：
+   - 睡眠多項生理檢查頁（內文更新 2024-08-20；頁首更新 2026-09-01）：「睡眠多項生理檢查為診斷睡眠障礙的黃金標準 (gold standard)。」「檢查時間：週一至週五 22:00 - 06:00」「檢查當日免掛號，但請攜帶健保卡」。
+   - 居家睡眠檢查頁（2024-08-23）：「為自費檢查項目，收費2000元。」
+   - 成人睡眠呼吸中止症頁（2024-07-23）：「正常： AHI<5 次/小時。輕度… 5≤AHI<15。中度… 15≤AHI<30。重度… AHI≥30。」
+   - 正壓呼吸器、手術、多元治療頁（2024-07-29）：「缺點的話，需適應佩戴呼吸器面罩的不適感及壓迫感，另外，正壓呼吸器費用需自費 (機器約 4~6 萬)。」
+4. 衛福部焦點新聞「失眠、打鼾、嗜睡？睡眠呼吸中止症病因 年齡大不同」https://www.mohw.gov.tw/cp-16-77716-1.html （建檔 113-02-19，資料來源國家衛生研究院）：「過去睡眠呼吸中止症的診斷需至睡眠中心進行整夜睡眠多頻道檢查，以平均睡眠呼吸中止指數來判斷嚴重度，每小時5次以上即為患有睡眠呼吸中止症。」未引用其盛行率（「一般成人約有15%」，新聞稿未列原始出處）。
+5. 衛福部食藥署新聞「阻塞型睡眠呼吸中止症患者的好眠小幫手－陽壓(正壓)呼吸器」https://www.mohw.gov.tw/cp-4256-47842-1.html （建檔 108-06-12，即 2019-06-12，已超過三年）：「症狀可能包括打鼾、夜間頻尿、睡醒時口乾舌燥、頭痛、日間疲倦嗜睡、注意力不集中等」（Opus 驗收逐字）。2026-11-10 使用者定：條目引用此句當症狀說明，標明日期，不單獨當規則依據；定義用臺北醫院原文「睡眠時上呼吸道發生反覆的塌陷…血中的氧氣濃度因而下降」。
+6. 《道路交通安全規則》（全國法規資料庫沿革頁：修正日期民國 115 年 6 月 26 日；歷史條文 2026-05-26 版與現行版第64條之1文字相同）第64條之1，逐字：「年滿六十歲職業駕駛人，應每年至中央衛生主管機關評鑑合格醫院作體格檢查一次…四、無下列任一疾病：…（八）患有經常性打呼合併白天嗜睡者，白天嗜睡指數大於十二。但接受多功能睡眠檢查評估治療有效者，不在此限。」「逾六十八歲之小型車職業駕駛人及汽車運輸業所屬逾六十五歲之大型車職業駕駛人並應符合下列體格檢查之合格基準：一、睡眠品質（PSQI）問卷評估：小於五分以下者為合格；不在此範圍值內但接受多功能睡眠生理檢查評估治療有效者，亦可評為合格。」
+7. 《道路交通管理處罰條例》（修正日期民國 115 年 8 月 17 日；頁面「生效狀態」註明部分條文尚未生效：第 18-1 條第 6 項、第 35 條多項、第 92-2 條、第 21、21-1、67、73、85-2、85-3 條，皆不含第 34 條），第34條逐字：「汽車駕駛人，連續駕車超過八小時經查屬實，或患病足以影響安全駕駛者，處新臺幣一千二百元以上二千四百元以下罰鍰，並禁止其駕駛；如應歸責於汽車所有人者，得吊扣其汽車牌照三個月。」
+8. 條文檢索：以 Open API 資料（2026-10-30 版）在名稱含「汽車、道路、公路、駕駛、運輸、交通、監理、大眾」的法律與命令中檢索「疲勞、疲倦、嗜睡、睡眠、打呼、打鼾」，只命中《道路交通安全規則》第64條之1；沒有找到以「疲勞駕駛」為名的條文。這是關鍵字檢索結果，不代表沒有其他規定（例如勞動、運輸業內部規範未檢索）。
+9. PubMed 摘要（只讀摘要）：
+   - PMID 28162150（Kapur 2017）：「We recommend that clinical tools, questionnaires and prediction algorithms not be used to diagnose OSA in adults, in the absence of polysomnography or home sleep apnea testing. (STRONG).」「polysomnography, rather than home sleep apnea testing, be used… in patients with significant cardiorespiratory disease… history of stroke or severe insomnia. (STRONG)」。
+   - PMID 20465027（Tregear 2009/2010 年資料，JCSM 5(6):573-581）：「The mean crash-rate ratio associated with OSA is likely to fall within the range of 1.21 to 4.89.」「Untreated sleep apnea is a significant contributor to motor vehicle crashes.」
+   - PMID 21061860（Tregear 2010，Sleep 33(10)）：「A meta-analysis of 9 observational studies examining crash risk of drivers with OSA pre- vs. post-CPAP found a significant risk reduction following treatment (risk ratio = 0.278, 95% CI: 0.22 to 0.35)… daytime sleepiness improves significantly following a single night of treatment, and simulated driving performance improves significantly within 2 to 7 days of CPAP treatment.」「Observational studies indicate that CPAP reduces motor vehicle crash risk among drivers with OSA.」
+   - PMID 27571048（McEvoy 2016，NEJM）：「a primary end-point event had occurred in 229 participants in the CPAP group (17.0%) and in 207 participants in the usual-care group (15.4%) (hazard ratio with CPAP, 1.10; 95% confidence interval, 0.91 to 1.32; P=0.34)」「mean duration of adherence to CPAP therapy was 3.3 hours per night」。
+   - PMID 30736888（Patil 2019）：摘要只寫「PAP compared to no treatment results in a clinically significant reduction in disease severity, sleepiness, blood pressure, and motor vehicle accidents」，沒有數字，條目未引用其具體分數。
+
+## 母專案編號與差異
+- 母專案 03-27（打鼾很響、有人看見你睡著時憋氣、白天困到開車都想睡的，去醫院查，中重度夜裡戴呼吸機），口徑標「時間」、收益標「中」、錢「多」。
+- 母專案收益引 Patil 2019 的 Epworth 降 2.4 分、車禍 RR 0.3，以及美國睡眠醫學會的診斷標準，我只讀過摘要，摘要沒有這些數字，條目不用；改用能在摘要核對的 Tregear 2010（RR 0.278）與 SAVE。
+- 口徑改為「死亡率」、收益量級改為「小」：車禍是替代終點；沒有找到可引的死亡降幅，且 SAVE 沒看到心血管事件下降。依判定規則（替代終點標「小」，比照 `tw-health-antihistamine-driving`）。若審核者認為口徑應為「健康」（白天嗜睡改善），收益依規則標「?」。
+- 台灣新增：健保支付標準 17008B 與適應症；臺北醫院的自費價格；《道路交通安全規則》第64條之1（年滿 60 歲職業駕駛人體檢，明寫打呼合併白天嗜睡）；《道路交通管理處罰條例》第34條。母專案的中國題材（國內盛行率 1.76 億人等）不用。
+- 母專案「戴呼吸機後開車出事少約七成」，本條改寫為「車禍風險降到約 28%」，因為台灣版要保留原始數字 RR 0.278，且註明是觀察性研究。
+
+## 未核實項與待辦
+- 口徑維持「死亡率／小」（2026-11-10 使用者定）。
+- TODO：待核實：睡眠多項生理檢查的民眾自付額（部分負擔）。支付標準明細沒寫；條目沒寫自付金額。
+- TODO：待核實：正壓呼吸器是否有健保給付、給付條件與租賃辦法。特材查詢只查到鼻管一筆，給付規定 A214-6 未開啟；條目只寫臺北醫院頁面的自費說明（單一醫院，2024-07-29）。
+- TODO：待核實：居家睡眠檢查是否有健保給付項目。支付標準查「睡眠」沒有此項；條目只寫該院自費 2,000 元。
+- TODO：待核實：《道路交通安全規則》第64條之1「白天嗜睡指數」是哪一種量表。條文沒指名；臺北醫院的 Epworth 嗜睡量表頁（2024-08-15）寫 11–24 分為高風險，與條文的「大於十二」不同，兩者不能直接對應，條目沒有把它們連起來。
+- TODO：待核實：第64條之1體檢的費用誰付、不合格後的申覆管道與期限，條目已寫明條文未載。
+- 睡眠呼吸中止的台灣盛行率：衛福部頁面寫「一般成人約有15%」，新聞稿沒有原始出處，條目沒用。
+- 開車時間與疲勞的行政規則（運輸業工時、駕駛連續駕車時間限制）：只做了法規關鍵字檢索，沒有逐部讀，條目只寫第34條與第64條之1。
+- 美國睡眠醫學會的診斷指引是美國指引，台灣醫師實務可能不同，條目已寫成「美國睡眠醫學會的指引」。
+
+## 建議放置
+- `book/health.md`（睡眠類相鄰條目是 `tw-health-sleep-duration`，主題不同，不重複；與 `tw-health-antihistamine-driving` 同屬嗜睡與開車）。已 `grep` book/ 查呼吸中止、打呼、打鼾、嗜睡、疲勞駕駛，只有抗組織胺開車條目提到嗜睡，不是同題。
+- 醫療類，已在備註加「待專業審核：」。涉罰鍰、不涉刑責。
+
+### 2026-11-10 合併
+
+- 合併位置：book/health.md 章末（接 tw-health-tb-cough-checkup 之後）。
+- 本文自草稿搬入 `book/`，核實日期與文字照草稿；本批合併前後檢查：條目本文無 TODO、無「待核實」字樣；互相引用的 id 皆存在於 `book/`。
+- verify (d) 擋下民國日期與期刊頁碼：支付價生效「104-02-01」換算為西元「2015-02-01」；Sleep 33(10) 引文刪去頁碼範圍，DOI 保留（DOI 內含起始頁）。

@@ -30,3 +30,7 @@
 - 依據：Satoh M 等，Hypertens Res 2019;42(6):807-816（PMID 30948837）。2026-10-07 用 NCBI E-utilities efetch 重取摘要核對：心血管事件與相關死亡「there were no appropriate studies for the present meta-analysis」；9 項以居家血壓設較低目標值的研究，動態收縮壓／舒張壓差 3.62/2.16 mmHg（P < 0.0001）。
 - 只讀摘要，未讀全文。
 - 判定：條目只有血壓值這個替代終點的數字，沒有死亡或心血管事件的相對降幅，依判定規則標「小」。
+
+### 2026-11-09 元敘述移出
+
+- 欄位「備註」原句：「以上只讀 PubMed 摘要，未讀全文。」（已從 book/health.md 移除）
