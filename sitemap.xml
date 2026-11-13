@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://naive000.github.io/survivepack/</loc><lastmod>2026-11-12</lastmod><priority>1.0</priority></url>
+  <url><loc>https://naive000.github.io/survivepack/</loc><lastmod>2026-11-13</lastmod><priority>1.0</priority></url>
   <url><loc>https://naive000.github.io/survivepack/calc/severance.html</loc><priority>0.8</priority></url>
   <url><loc>https://naive000.github.io/survivepack/calc/overtime.html</loc><priority>0.8</priority></url>
   <url><loc>https://naive000.github.io/survivepack/calc/leave.html</loc><priority>0.8</priority></url>
   <url><loc>https://naive000.github.io/survivepack/calc/</loc><priority>0.8</priority></url>
   <url><loc>https://naive000.github.io/survivepack/today/</loc><priority>0.8</priority></url>
   <url><loc>https://naive000.github.io/survivepack/changes/</loc><lastmod>2026-10-14</lastmod><priority>0.7</priority></url>
-  <url><loc>https://naive000.github.io/survivepack/e/tw-health-rear-seatbelt/</loc><lastmod>2026-10-01</lastmod><priority>0.6</priority></url>
+  <url><loc>https://naive000.github.io/survivepack/e/tw-health-rear-seatbelt/</loc><lastmod>2026-11-13</lastmod><priority>0.6</priority></url>
   <url><loc>https://naive000.github.io/survivepack/e/tw-health-controlled-drug-sharing/</loc><lastmod>2026-10-01</lastmod><priority>0.6</priority></url>
   <url><loc>https://naive000.github.io/survivepack/e/tw-cancer-lung-ldct/</loc><lastmod>2026-10-01</lastmod><priority>0.6</priority></url>
-  <url><loc>https://naive000.github.io/survivepack/e/tw-health-motorcycle-helmet/</loc><lastmod>2026-10-01</lastmod><priority>0.6</priority></url>
+  <url><loc>https://naive000.github.io/survivepack/e/tw-health-motorcycle-helmet/</loc><lastmod>2026-11-13</lastmod><priority>0.6</priority></url>
   <url><loc>https://naive000.github.io/survivepack/e/tw-health-weekly-150min-activity/</loc><lastmod>2026-10-01</lastmod><priority>0.6</priority></url>
   <url><loc>https://naive000.github.io/survivepack/e/tw-health-chronic-med-adherence/</loc><lastmod>2026-10-02</lastmod><priority>0.6</priority></url>
   <url><loc>https://naive000.github.io/survivepack/e/tw-health-diabetes-ckd-shared-care/</loc><lastmod>2026-10-01</lastmod><priority>0.6</priority></url>
@@ -46,7 +46,7 @@
   <url><loc>https://naive000.github.io/survivepack/e/tw-health-aqi-activity/</loc><lastmod>2026-10-01</lastmod><priority>0.6</priority></url>
   <url><loc>https://naive000.github.io/survivepack/e/tw-health-myplate-veg-fruit/</loc><lastmod>2026-10-01</lastmod><priority>0.6</priority></url>
   <url><loc>https://naive000.github.io/survivepack/e/tw-health-adult-checkup-glucose/</loc><lastmod>2026-10-01</lastmod><priority>0.6</priority></url>
-  <url><loc>https://naive000.github.io/survivepack/e/tw-health-sleep-apnea-checkup/</loc><lastmod>2026-11-10</lastmod><priority>0.6</priority></url>
+  <url><loc>https://naive000.github.io/survivepack/e/tw-health-sleep-apnea-checkup/</loc><lastmod>2026-11-13</lastmod><priority>0.6</priority></url>
   <url><loc>https://naive000.github.io/survivepack/e/tw-cancer-cervical-screening/</loc><lastmod>2026-10-01</lastmod><priority>0.6</priority></url>
   <url><loc>https://naive000.github.io/survivepack/e/tw-health-flu-vaccine-public/</loc><lastmod>2026-10-03</lastmod><priority>0.6</priority></url>
   <url><loc>https://naive000.github.io/survivepack/e/tw-health-hepatitis-bc-screening/</loc><lastmod>2026-10-01</lastmod><priority>0.6</priority></url>
@@ -174,7 +174,7 @@
   <url><loc>https://naive000.github.io/survivepack/e/tw-emergency-seizure-first-aid/</loc><lastmod>2026-10-01</lastmod><priority>0.6</priority></url>
   <url><loc>https://naive000.github.io/survivepack/e/tw-emergency-drunk-care/</loc><lastmod>2026-11-10</lastmod><priority>0.6</priority></url>
   <url><loc>https://naive000.github.io/survivepack/e/tw-emergency-hypoglycemia-sugar/</loc><lastmod>2026-10-01</lastmod><priority>0.6</priority></url>
-  <url><loc>https://naive000.github.io/survivepack/e/tw-emergency-electric-shock/</loc><lastmod>2026-10-01</lastmod><priority>0.6</priority></url>
+  <url><loc>https://naive000.github.io/survivepack/e/tw-emergency-electric-shock/</loc><lastmod>2026-11-13</lastmod><priority>0.6</priority></url>
   <url><loc>https://naive000.github.io/survivepack/e/tw-emergency-chemical-burn/</loc><lastmod>2026-10-01</lastmod><priority>0.6</priority></url>
   <url><loc>https://naive000.github.io/survivepack/e/tw-emergency-pesticide-storage/</loc><lastmod>2026-10-01</lastmod><priority>0.6</priority></url>
   <url><loc>https://naive000.github.io/survivepack/e/tw-emergency-tick-removal/</loc><lastmod>2026-10-01</lastmod><priority>0.6</priority></url>
@@ -224,8 +224,8 @@
   <url><loc>https://naive000.github.io/survivepack/e/tw-labor-child-worker/</loc><lastmod>2026-10-01</lastmod><priority>0.6</priority></url>
   <url><loc>https://naive000.github.io/survivepack/e/tw-labor-min-wage-check/</loc><lastmod>2026-11-12</lastmod><priority>0.6</priority></url>
   <url><loc>https://naive000.github.io/survivepack/e/tw-labor-attendance-record/</loc><lastmod>2026-10-01</lastmod><priority>0.6</priority></url>
-  <url><loc>https://naive000.github.io/survivepack/e/tw-labor-maternity-leave-pay/</loc><lastmod>2026-10-01</lastmod><priority>0.6</priority></url>
-  <url><loc>https://naive000.github.io/survivepack/e/tw-labor-pregnancy-unfair-treatment/</loc><lastmod>2026-10-01</lastmod><priority>0.6</priority></url>
+  <url><loc>https://naive000.github.io/survivepack/e/tw-labor-maternity-leave-pay/</loc><lastmod>2026-11-13</lastmod><priority>0.6</priority></url>
+  <url><loc>https://naive000.github.io/survivepack/e/tw-labor-pregnancy-unfair-treatment/</loc><lastmod>2026-11-13</lastmod><priority>0.6</priority></url>
   <url><loc>https://naive000.github.io/survivepack/e/tw-labor-sexual-harassment-complaint/</loc><lastmod>2026-10-01</lastmod><priority>0.6</priority></url>
   <url><loc>https://naive000.github.io/survivepack/e/tw-labor-insured-salary-check/</loc><lastmod>2026-10-01</lastmod><priority>0.6</priority></url>
   <url><loc>https://naive000.github.io/survivepack/e/tw-labor-employer-no-enrollment/</loc><lastmod>2026-10-01</lastmod><priority>0.6</priority></url>
@@ -276,7 +276,7 @@
   <url><loc>https://naive000.github.io/survivepack/e/tw-disability-assistive-device-subsidy/</loc><lastmod>2026-10-01</lastmod><priority>0.6</priority></url>
   <url><loc>https://naive000.github.io/survivepack/e/tw-disability-parking-permit/</loc><lastmod>2026-10-01</lastmod><priority>0.6</priority></url>
   <url><loc>https://naive000.github.io/survivepack/e/tw-disability-home-accessibility-improvement/</loc><lastmod>2026-10-01</lastmod><priority>0.6</priority></url>
-  <url><loc>https://naive000.github.io/survivepack/e/tw-disability-driving-license/</loc><lastmod>2026-11-09</lastmod><priority>0.6</priority></url>
+  <url><loc>https://naive000.github.io/survivepack/e/tw-disability-driving-license/</loc><lastmod>2026-11-13</lastmod><priority>0.6</priority></url>
   <url><loc>https://naive000.github.io/survivepack/e/tw-disability-certificate/</loc><lastmod>2026-10-01</lastmod><priority>0.6</priority></url>
   <url><loc>https://naive000.github.io/survivepack/e/tw-disability-early-intervention/</loc><lastmod>2026-10-01</lastmod><priority>0.6</priority></url>
   <url><loc>https://naive000.github.io/survivepack/e/tw-disability-certificate-renewal/</loc><lastmod>2026-10-01</lastmod><priority>0.6</priority></url>
@@ -502,7 +502,7 @@
   <url><loc>https://naive000.github.io/survivepack/e/tw-elder-guardianship-declaration/</loc><lastmod>2026-10-07</lastmod><priority>0.6</priority></url>
   <url><loc>https://naive000.github.io/survivepack/e/tw-elder-asset-inventory/</loc><lastmod>2026-10-01</lastmod><priority>0.6</priority></url>
   <url><loc>https://naive000.github.io/survivepack/e/tw-elder-estate-partition-mediation/</loc><lastmod>2026-10-03</lastmod><priority>0.6</priority></url>
-  <url><loc>https://naive000.github.io/survivepack/e/tw-elder-vehicle-inherit-scrap/</loc><lastmod>2026-10-01</lastmod><priority>0.6</priority></url>
+  <url><loc>https://naive000.github.io/survivepack/e/tw-elder-vehicle-inherit-scrap/</loc><lastmod>2026-11-13</lastmod><priority>0.6</priority></url>
   <url><loc>https://naive000.github.io/survivepack/e/tw-elder-surviving-spouse-property-claim/</loc><lastmod>2026-10-02</lastmod><priority>0.6</priority></url>
   <url><loc>https://naive000.github.io/survivepack/e/tw-elder-support-obligation/</loc><lastmod>2026-10-07</lastmod><priority>0.6</priority></url>
   <url><loc>https://naive000.github.io/survivepack/e/tw-law-intent-guardianship/</loc><lastmod>2026-10-07</lastmod><priority>0.6</priority></url>
@@ -544,7 +544,7 @@
   <url><loc>https://naive000.github.io/survivepack/e/tw-law-redlines-own-conversation-recording/</loc><lastmod>2026-10-01</lastmod><priority>0.6</priority></url>
   <url><loc>https://naive000.github.io/survivepack/e/tw-law-redlines-incapacitated-sex-consent/</loc><lastmod>2026-10-01</lastmod><priority>0.6</priority></url>
   <url><loc>https://naive000.github.io/survivepack/e/tw-law-account-lending/</loc><lastmod>2026-10-01</lastmod><priority>0.6</priority></url>
-  <url><loc>https://naive000.github.io/survivepack/e/tw-law-drunk-driving/</loc><lastmod>2026-11-09</lastmod><priority>0.6</priority></url>
+  <url><loc>https://naive000.github.io/survivepack/e/tw-law-drunk-driving/</loc><lastmod>2026-11-13</lastmod><priority>0.6</priority></url>
   <url><loc>https://naive000.github.io/survivepack/e/tw-law-redlines-drug-treatment/</loc><lastmod>2026-10-01</lastmod><priority>0.6</priority></url>
   <url><loc>https://naive000.github.io/survivepack/e/tw-law-redlines-money-mule/</loc><lastmod>2026-10-01</lastmod><priority>0.6</priority></url>
   <url><loc>https://naive000.github.io/survivepack/e/tw-law-redlines-phone-account/</loc><lastmod>2026-10-01</lastmod><priority>0.6</priority></url>
@@ -573,7 +573,7 @@
   <url><loc>https://naive000.github.io/survivepack/e/tw-law-redlines-fake-loan-docs/</loc><lastmod>2026-10-01</lastmod><priority>0.6</priority></url>
   <url><loc>https://naive000.github.io/survivepack/e/tw-law-redlines-sex-trade/</loc><lastmod>2026-10-01</lastmod><priority>0.6</priority></url>
   <url><loc>https://naive000.github.io/survivepack/e/tw-law-redlines-ecig/</loc><lastmod>2026-10-01</lastmod><priority>0.6</priority></url>
-  <url><loc>https://naive000.github.io/survivepack/e/tw-law-exam-impersonation/</loc><lastmod>2026-11-10</lastmod><priority>0.6</priority></url>
+  <url><loc>https://naive000.github.io/survivepack/e/tw-law-exam-impersonation/</loc><lastmod>2026-11-13</lastmod><priority>0.6</priority></url>
   <url><loc>https://naive000.github.io/survivepack/e/tw-law-redlines-subpoena-identity/</loc><lastmod>2026-10-01</lastmod><priority>0.6</priority></url>
   <url><loc>https://naive000.github.io/survivepack/e/tw-law-redlines-report-receipt/</loc><lastmod>2026-10-01</lastmod><priority>0.6</priority></url>
   <url><loc>https://naive000.github.io/survivepack/e/tw-law-redlines-drone-register-nofly/</loc><lastmod>2026-10-01</lastmod><priority>0.6</priority></url>
@@ -595,7 +595,7 @@
   <url><loc>https://naive000.github.io/survivepack/e/tw-overseas-medicine-declaration/</loc><lastmod>2026-10-01</lastmod><priority>0.6</priority></url>
   <url><loc>https://naive000.github.io/survivepack/e/tw-overseas-powerbank-carry-on/</loc><lastmod>2026-10-01</lastmod><priority>0.6</priority></url>
   <url><loc>https://naive000.github.io/survivepack/e/tw-overseas-study-agent-contract/</loc><lastmod>2026-10-01</lastmod><priority>0.6</priority></url>
-  <url><loc>https://naive000.github.io/survivepack/e/tw-overseas-driving-permit/</loc><lastmod>2026-10-01</lastmod><priority>0.6</priority></url>
+  <url><loc>https://naive000.github.io/survivepack/e/tw-overseas-driving-permit/</loc><lastmod>2026-11-13</lastmod><priority>0.6</priority></url>
   <url><loc>https://naive000.github.io/survivepack/e/tw-overseas-working-holiday/</loc><lastmod>2026-10-01</lastmod><priority>0.6</priority></url>
   <url><loc>https://naive000.github.io/survivepack/e/tw-overseas-tax-exit-ban/</loc><lastmod>2026-10-01</lastmod><priority>0.6</priority></url>
   <url><loc>https://naive000.github.io/survivepack/e/tw-overseas-travel-advisory-login/</loc><lastmod>2026-10-01</lastmod><priority>0.6</priority></url>

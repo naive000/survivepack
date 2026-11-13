@@ -1,6 +1,6 @@
 // 共用版面：所有 build 產生的頁面都從這裡出（頁首、底部工具列、頁尾免責聲明、共用 CSS）。
 // 路徑一律依 depth 算相對路徑，站放在 /survivepack/ 子路徑或網域根目錄都能動；只有 canonical 與 OG 網址用絕對網址（SITE_URL）。
-import { esc, rel, jsonLd, NAME, SLOGAN, DISCLAIMER, LICENSE_URL, siteUrl } from './helpers.mjs';
+import { esc, rel, jsonLd, NAME, SLOGAN, DISCLAIMER, LICENSE_URL, siteUrl, AI_NOTE, beaconSnippet } from './helpers.mjs';
 
 // <head> 內的主題初始化：class 'dark' 是狀態（calc 頁自帶的切換處理也只動 class），data-theme 是給 CSS 讀的鏡像。
 // 沒有 JS 就不會有 data-theme，CSS 退回 prefers-color-scheme。
@@ -52,6 +52,8 @@ export function toolbar(depth, active = '') {
  * @param {string} [o.scripts]    </body> 前的 HTML（頁面自己的 <script>）
  * @param {string} [o.headerSearch]  取代頂部列的「搜尋」連結（首頁放真正的輸入框）
  * @param {string} [o.headerLead]    頂部列站名前面的 HTML（首頁放篩選選單鈕）
+ * @param {string} [o.aiNote]       AI 協助揭露句；省略用 helpers.AI_NOTE 全文；傳空字串＝不輸出（條目頁因 e/ 平均 ≤ 12 KB 預算，加上統計碼後塞不下，暫不輸出）
+ * @param {boolean} [o.beacon=false]  true：token 非空時在 </body> 前輸出 Cloudflare Web Analytics snippet（只有首頁與 e/ 傳 true）
  * @param {string} [o.footNote]      免責聲明下方的補充說明 HTML
  * @param {string[]} [o.css]         額外的 CSS 檔（相對站根，如 'assets/calc.css'），接在 site.css 後
  */
@@ -96,7 +98,7 @@ ${search}
 
   const footer = `<footer class="site-foot">
 <p class="disclaimer">${DISCLAIMER}</p>
-<p><a href="${a('')}">${NAME}</a>（${SLOGAN}）。內容採 <a href="${LICENSE_URL}" target="_blank" rel="noopener">CC BY-NC 4.0</a>，程式碼 MIT；啟發自 <a href="https://github.com/eternity4719/HowToLiveBetter" target="_blank" rel="noopener">eternity4719/HowToLiveBetter</a>，條目依台灣制度重寫。不收集個人資料。</p>
+${(o.aiNote ?? AI_NOTE) ? `<p class="ai-note">${o.aiNote ?? AI_NOTE}</p>\n` : ''}<p><a href="${a('')}">${NAME}</a>（${SLOGAN}）。內容採 <a href="${LICENSE_URL}" target="_blank" rel="noopener">CC BY-NC 4.0</a>，程式碼 MIT；啟發自 <a href="https://github.com/eternity4719/HowToLiveBetter" target="_blank" rel="noopener">eternity4719/HowToLiveBetter</a>，條目依台灣制度重寫。不收集個人資料。</p>
 <p>法規條文取自全國法規資料庫，依「政府資料開放授權條款－第 1 版」使用。</p>${o.footNote ? `\n<p class="foot-note">${o.footNote}</p>` : ''}
 </footer>`;
 
@@ -112,7 +114,7 @@ ${header}
 ${main}
 ${footer}
 ${toolbar(depth, active)}
-${o.siteJs === false ? '' : `<script src="${a('assets/site.js')}" defer></script>\n`}${o.scripts || ''}
+${o.siteJs === false ? '' : `<script src="${a('assets/site.js')}" defer></script>\n`}${o.scripts || ''}${o.beacon ? beaconSnippet() : ''}
 </body>
 </html>
 `;

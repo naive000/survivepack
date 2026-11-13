@@ -14,7 +14,7 @@
 
 網址：https://naive000.github.io/survivepack/e/tw-health-rear-seatbelt/
 id：tw-health-rear-seatbelt
-核實日期：2026-10-01
+核實日期：2026-11-13
 法源條號：《道路交通管理處罰條例》第8條、第31條第1項、第2項、第3項、第85條、第87條；《道路交通安全規則》第89條；《汽車駕駛人及乘客繫安全帶實施及宣導辦法》第2條、第3條、第4條、第5條
 適用地區：全國
 失效條件：上列條文修正（罰鍰金額、適用車種、免繫情形）；交通部修正繫安全帶實施辦法
@@ -64,7 +64,7 @@ id：tw-cancer-lung-ldct
 
 網址：https://naive000.github.io/survivepack/e/tw-health-motorcycle-helmet/
 id：tw-health-motorcycle-helmet
-核實日期：2026-10-01
+核實日期：2026-11-13
 法源條號：《道路交通管理處罰條例》第7-1條、第8條、第31條第6項、第87條；《道路交通安全規則》第88條
 適用地區：全國
 失效條件：上列條文修正（罰鍰金額、安全帽規格、檢舉範圍）；機車安全帽檢驗機關或標識規定改變
@@ -669,7 +669,7 @@ id：tw-health-adult-checkup-glucose
 
 網址：https://naive000.github.io/survivepack/e/tw-health-sleep-apnea-checkup/
 id：tw-health-sleep-apnea-checkup
-核實日期：2026-11-10
+核實日期：2026-11-13
 法源條號：《道路交通管理處罰條例》第34條；《道路交通安全規則》第64條之1
 適用地區：全國
 失效條件：健保署修正「睡眠多項生理檢查」（診療項目代碼 17008B）的支付點數或適應症；衛福部臺北醫院更新正壓呼吸器自費價格說明；《道路交通管理處罰條例》第34條或《道路交通安全規則》第64條之1修正；出現推翻現有車禍風險估計的新研究
@@ -2858,7 +2858,7 @@ id：tw-emergency-hypoglycemia-sugar
 
 網址：https://naive000.github.io/survivepack/e/tw-emergency-electric-shock/
 id：tw-emergency-electric-shock
-核實日期：2026-10-01
+核實日期：2026-11-13
 法源條號：《用戶用電設備裝置規則》第87條、第88條、第89條
 適用地區：全國
 失效條件：用戶用電設備裝置規則第87、88、89條修正；感電急救建議改變
@@ -3722,7 +3722,7 @@ id：tw-labor-attendance-record
 
 網址：https://naive000.github.io/survivepack/e/tw-labor-maternity-leave-pay/
 id：tw-labor-maternity-leave-pay
-核實日期：2026-10-01
+核實日期：2026-11-13
 法源條號：《性別平等工作法》第2條、第15條、第21條、第26條、第30條、第33條、第34條、第37條、第38條；《性別平等工作法施行細則》第6條、第7條、第13條；《性別平等工作申訴審議處理辦法》第4條；《勞動基準法》第50條
 適用地區：全國
 失效條件：上列任一條文修正；你不適用勞動基準法時，產假工資的算法要另查
@@ -3739,7 +3739,7 @@ id：tw-labor-maternity-leave-pay
 
 網址：https://naive000.github.io/survivepack/e/tw-labor-pregnancy-unfair-treatment/
 id：tw-labor-pregnancy-unfair-treatment
-核實日期：2026-10-01
+核實日期：2026-11-13
 法源條號：《性別平等工作法》第2條、第4條、第7條、第10條、第11條、第26條、第29條、第30條、第31條、第34條、第36條、第37條、第38條、第38-1條；《性別平等工作法施行細則》第2條；《性別平等工作申訴審議處理辦法》第2條、第4條；《性別平等工作法律扶助辦法》第3條；《勞動基準法》第13條、第51條；《職業安全衛生法》第31條
 適用地區：全國
 失效條件：上列任一條文修正；你不是受僱者（例如承攬、自營）時，本條不適用
@@ -4622,7 +4622,7 @@ id：tw-disability-home-accessibility-improvement
 
 網址：https://naive000.github.io/survivepack/e/tw-disability-driving-license/
 id：tw-disability-driving-license
-核實日期：2026-11-09
+核實日期：2026-11-13
 法源條號：《道路交通安全規則》第2條、第64條、第65條、第66條；《道路交通管理處罰條例》第21條
 適用地區：全國
 失效條件：上列條文修正；交通部另定的身障報考規定修正
@@ -8525,7 +8525,7 @@ id：tw-elder-estate-partition-mediation
 
 網址：https://naive000.github.io/survivepack/e/tw-elder-vehicle-inherit-scrap/
 id：tw-elder-vehicle-inherit-scrap
-核實日期：2026-10-01
+核實日期：2026-11-13
 法源條號：《道路交通安全規則》第15條、第16條、第22條、第29條、第30條、第32條、第33條、第45條；《公路法》第61條；《道路交通管理處罰條例》第9條之1
 適用地區：全國
 失效條件：上列任一條文修正；監理機關變更繼承過戶應備文件
@@ -9257,7 +9257,7 @@ id：tw-law-account-lending
 
 網址：https://naive000.github.io/survivepack/e/tw-law-drunk-driving/
 id：tw-law-drunk-driving
-核實日期：2026-11-09
+核實日期：2026-11-13
 法源條號：《刑法》第185-3條；《道路交通管理處罰條例》第8條、第35條、第85-3條、第87條；《道路交通安全規則》第114條；《刑事訴訟法》第228條、第230條、第231條、第251條、第252條、第253-1條、第349條、第449條；《行政訴訟法》第98條、第237-3條、第237-5條
 適用地區：全國
 失效條件：上列任一條文修正；處罰條例第35條第6項、第15項2026-12-31起施行新版，第6項、第13項（2025-11-19修正）施行日由行政院另定；行政院公告毒品品項與濃度值改變
@@ -9754,7 +9754,7 @@ id：tw-law-redlines-ecig
 
 網址：https://naive000.github.io/survivepack/e/tw-law-exam-impersonation/
 id：tw-law-exam-impersonation
-核實日期：2026-11-10
+核實日期：2026-11-13
 法源條號：《公務人員考試法》第22條；《專門職業及技術人員考試法》第19條；《典試法》第21條、第31條；《試場規則》第15條、第21條、第23條；《道路交通安全規則》第70條；《中華民國刑法》第137條
 適用地區：全國
 失效條件：上列任一條文修正；《試場規則》第15條款次變動；道路交通安全規則第70條移列或刪除
@@ -10136,7 +10136,7 @@ id：tw-overseas-study-agent-contract
 
 網址：https://naive000.github.io/survivepack/e/tw-overseas-driving-permit/
 id：tw-overseas-driving-permit
-核實日期：2026-10-01
+核實日期：2026-11-13
 法源條號：《道路交通安全規則》第51條、第53條、第55條
 適用地區：全國
 失效條件：道路交通安全規則第51、53、55條修正；國際道路交通公約或各國承認情形變動

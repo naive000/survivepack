@@ -78,7 +78,7 @@ ${scenarios.map(s => `        <li><a class="tile" href="s/${esc(s.id)}/"><b>${es
     description: '遇到事就打開。按性價比排序的台灣生活法規查詢工具：每條寫明成本、收益、證據等級，附官方原文出處與核實日期。涵蓋健保看病、勞動權益、詐騙防範與法律紅線。',
     body: (sidebar + '\n' + main).replace(/\n\s+/g, '\n'),   // 去掉縮排省首載位元組
     raw: true, depth: 0, canonical: siteUrl(), active: 'all',
-    css: ['assets/home.css'], headerLead, headerSearch,
+    beacon: true, css: ['assets/home.css'], headerLead, headerSearch,
     scripts: '<script src="assets/home.js" defer></script>'
   });
   ctx.writeFile('index.html', html);

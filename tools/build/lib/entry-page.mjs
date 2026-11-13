@@ -96,7 +96,7 @@ ${e.dispute && DISPUTE_HELP[e.disputeType] ? `<p class="dhelp">${esc(DISPUTE_HEL
 <div class="blk"><h2>成本</h2><p>${inline(e.cost, e.id)}</p></div>
 <div class="blk note"><h2>備註</h2><p>${lines(e.note, e.id)}</p></div>
 </article>
-${calcBtn}<p><a class="btn ghost" href="../../#${e.id}">回首頁看完整清單與篩選</a></p>
+${calcBtn}<p><a class="btn ghost" href="../../#${e.id}">回首頁看完整清單與篩選</a> <a class="btn ghost report" rel="noopener" href="${esc(reportUrl(e))}">回報錯誤</a></p>
 <nav class="more" aria-label="同章其他條目"><h2>同章：${esc(sec.title)}（${n} 條）</h2>
 <ul>
 ${others}
@@ -116,10 +116,13 @@ ${others}
     };
 
     return page({
-      title: e.title, description: desc, body, depth: 2, canonical: url, ogType: 'article', jsonLd: [graph],
+      title: e.title, description: desc, body, depth: 2, canonical: url, ogType: 'article', jsonLd: [graph], aiNote: '', beacon: true,
       footNote: '性價比檔由收益量級加花錢、花時間、要毅力三項成本合成，是編輯判斷，不是證據。'
     });
   };
 }
+// 回報錯誤：普通連結，開公開 repo 的糾錯 issue form 並預填 entry 欄（只放 id：標題 URL 編碼後每頁多約 0.3 KB，會破 12 KB 預算），不送任何資料
+const REPORT_BASE = 'https://github.com/naive000/survivepack/issues/new';
+const reportUrl = e => `${REPORT_BASE}?template=${encodeURIComponent('1-糾錯.yml')}&entry=${e.id}`;
 const REVIEW_BADGE = '待專業審核';
 const NEAR = 5;   // 同章導覽顯示的鄰近條數

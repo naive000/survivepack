@@ -9,6 +9,17 @@ export { RATIO_RANK, COST_W, ratioOf, LENS_LABEL, LABEL, DISPUTE_HELP, REVERIFY_
 export const NAME = '台灣生存包', SLOGAN = '遇到事就打開';
 export const SITE_DESC = '按性價比排序的台灣生活法規查詢工具：每條寫明成本、收益、證據等級，附官方原文出處、法源條號與核實日期。涵蓋健保看病、勞動權益、詐騙防範與法律紅線。';
 export const DISCLAIMER = '本站為一般資訊整理，不構成法律或醫療建議，個案請洽專業人員。法律與福利規定常修正，請以條目標示的核實日期和官方最新公告為準。';
+// AI 協助揭露（2026-11-13）：首頁與非條目頁頁尾輸出全文；條目頁（e/）不輸出（實測 +55 B/頁，加上統計碼 +134 B/頁會讓 e/ 平均 12299 B 超過 12288 B 預算）。
+export const AI_NOTE = '本站條目由 Claude Code（AI）協助蒐集與撰寫，每條對照官方原文或原始文獻核實並標核實日期。仍可能有錯，歡迎回報。';
+// Cloudflare Web Analytics（無 cookie、不收個資）token。預設空字串＝建置時不輸出任何統計碼。
+// 拿到 token 後以環境變數 CF_BEACON_TOKEN 傳入建置（32 位英數字）；只有首頁 index.html 與 e/ 條目頁會輸出官方 snippet（見 layout.mjs 的 beacon 選項）。
+// 環境變數 CF_BEACON_TOKEN 可臨時覆蓋（測試用）。verify-site.mjs 只放行這一個完全相同格式的 script 標籤。
+export const cfBeaconToken = (process.env.CF_BEACON_TOKEN ?? '').trim();
+if (cfBeaconToken && !/^[A-Za-z0-9]{16,64}$/.test(cfBeaconToken)) throw new Error('cfBeaconToken 格式不正確（只能是 16–64 位英數字）');
+/** 官方 snippet；token 為空回傳空字串。verify-site.mjs 依同一格式驗證。 */
+export const beaconSnippet = () => cfBeaconToken
+  ? `<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "${cfBeaconToken}"}'></script>\n`
+  : '';
 export const LICENSE_URL = 'https://creativecommons.org/licenses/by-nc/4.0/deed.zh-Hant';
 export const REVIEW_FLAG = '待專業審核';
 // 站根網址的唯一設定位置：sitemap、canonical、OG、llms、feed.xml（pages/40-changes.mjs 用 siteUrl()）都從這裡來。環境變數 SITE_URL 可覆蓋。

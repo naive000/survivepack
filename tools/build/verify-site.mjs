@@ -1,6 +1,6 @@
 // 建置產物驗證：npm run verify（先 npm run build）。任何一項失敗就 exit 1。只用 node 內建模組、只讀本機檔案與 git HEAD，不連網。
 //  (a) 每個 e/ 頁含核實日期、免責聲明、assets/site.css 連結
-//  (b) 沒有外部字型、外部腳本、追蹤碼
+//  (b) 沒有外部字型、外部腳本、追蹤碼（唯一例外：Cloudflare Web Analytics 官方 snippet，只限首頁與 e/ 頁，token 為空時全站不得出現 cloudflareinsights）
 //  (c) 待專業審核條目（docs/needs-professional-review.md）的頁面都有徽章與橫幅
 //  (d) 電話號碼樣式字串只能是 docs/hotlines.md 白名單，或建置前 git HEAD 同一頁已有的
 //  (e) calc 計算腳本與 git HEAD 逐字相同（雜湊比對）
@@ -16,7 +16,7 @@ import { gzipSync } from 'node:zlib';
 import { createHash } from 'node:crypto';
 import { createRequire } from 'node:module';
 import { loadBook } from './lib/entry.mjs';
-import { SHOW_PATHS, SITE } from './lib/helpers.mjs';   // 與 build 同一個旗標：SHOW_PATHS=0 npm run verify 驗公開匯出版（沒有 s/、沒有任何指向 s/ 的連結）
+import { SHOW_PATHS, SITE, cfBeaconToken } from './lib/helpers.mjs';   // 與 build 同一個旗標：SHOW_PATHS=0 npm run verify 驗公開匯出版（沒有 s/、沒有任何指向 s/ 的連結）
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..', '..');
 const read = p => readFileSync(join(root, p), 'utf8');
@@ -73,6 +73,10 @@ for (const p of entryPages) {
   if (/<style[\s>]/.test(h)) fail(`${p} 仍有內嵌 <style>`);
   if (!h.includes('application/ld+json') || !h.includes('"FAQPage"') || !h.includes('property="og:title"')) fail(`${p} 缺 OG 或 FAQ 結構化資料`);
   if (!/<nav class="toolbar"/.test(h)) fail(`${p} 沒有底部工具列`);
+  const rid = p.split('/')[1];
+  const rm = h.match(/<a class="btn ghost report" rel="noopener" href="(https:\/\/github\.com\/naive000\/survivepack\/issues\/new\?[^"]*)">回報錯誤<\/a>/);
+  if (!rm) fail(`${p} 沒有回報錯誤連結`);
+  else if (!rm[1].includes('template=' + encodeURIComponent('1-糾錯.yml')) || decodeURIComponent(rm[1].replace(/&amp;/g, '&').split('entry=')[1] || '') !== rid) fail(`${p} 回報連結缺範本或條目 id ${rid}`);
 }
 for (const p of ['index.html', 'today/index.html', 'calc/index.html', 'calc/severance.html', 'calc/overtime.html', 'calc/leave.html']) {
   const h = pages.get(p);
@@ -87,7 +91,23 @@ ok('a');
 section = 'b';
 const BANNED = /googleapis|gstatic|googletagmanager|google-analytics|cloudflareinsights|plausible|fonts\.|typekit|fontawesome|jsdelivr|unpkg|cdnjs|\bcdn\b|cdn\./i;
 const assetFiles = readdirSync(join(root, 'assets')).filter(n => /\.(css|js)$/.test(n)).map(n => 'assets/' + n);
-for (const [p, h] of pages) {
+// 窄例外：Cloudflare Web Analytics 官方 snippet，字串必須完全相同（src 正好是下列網址，屬性只有 defer 與 data-cf-beacon），
+// 且只能出現在首頁與 e/ 條目頁、每頁至多一個。其餘外部 script、plausible、其他網域照樣擋。
+const BEACON_RE = /<script defer src="https:\/\/static\.cloudflareinsights\.com\/beacon\.min\.js" data-cf-beacon='\{"token": "([A-Za-z0-9]{16,64})"\}'><\/script>\n?/g;
+const beaconAllowed = p => p === 'index.html' || /^e\/[^/]+\/index\.html$/.test(p);
+const stripBeacon = (p, h) => {
+  const found = [...h.matchAll(BEACON_RE)];
+  if (!found.length) return h;
+  if (!beaconAllowed(p)) fail(`${p} 不該有統計碼（只允許首頁與 e/ 頁）`);
+  else if (found.length > 1) fail(`${p} 統計碼出現 ${found.length} 次`);
+  else if (!cfBeaconToken) fail(`${p} 有統計碼，但建置設定 cfBeaconToken 為空`);
+  else if (found[0][1] !== cfBeaconToken) fail(`${p} 統計碼的 token 與建置設定不符`);
+  return h.replace(BEACON_RE, '');
+};
+let beaconPages = 0;
+for (const [p, h0] of pages) {
+  const h = stripBeacon(p, h0);
+  if (h !== h0) beaconPages++;
   // 資源型標籤的 src/href 不得是外部網址（<a> 與 canonical 例外）
   for (const m of h.matchAll(/<(script|img|iframe|source|video|audio|embed|object|link)\b([^>]*)>/g)) {
     const tag = m[1], attrs = m[2];
@@ -105,6 +125,16 @@ for (const [p, h] of pages) {
   if (/@import|url\(\s*["']?(?:https?:)?\/\//i.test(h)) fail(`${p} 內嵌 CSS 有 @import 或外部 url()`);
   if (/\bInter\b/.test(code + '\n' + markup)) fail(`${p} 出現 Inter`);
 }
+// 自測：token 為空 → 任何產物（html、assets、llms、sitemap、feed）都不得出現 cloudflareinsights；有 token → 首頁與每個 e/ 頁都要有
+if (!cfBeaconToken) {
+  for (const [p, h] of pages) if (/cloudflareinsights/i.test(h)) fail(`cfBeaconToken 為空，但 ${p} 出現 cloudflareinsights`);
+  for (const f of ['llms.txt', 'llms-full.txt', 'sitemap.xml', 'feed.xml', ...assetFiles]) if (/cloudflareinsights/i.test(read(f))) fail(`cfBeaconToken 為空，但 ${f} 出現 cloudflareinsights`);
+  if (beaconPages) fail('cfBeaconToken 為空，但仍輸出了統計碼');
+} else {
+  const want = ['index.html', ...entryPages];
+  for (const p of want) if (!new RegExp(BEACON_RE.source).test(pages.get(p))) fail(`${p} 缺統計碼（cfBeaconToken 已設）`);
+  if (beaconPages !== want.length) fail(`統計碼頁數 ${beaconPages} ≠ 預期 ${want.length}（首頁＋e/）`);
+}
 for (const f of assetFiles) {
   const t = read(f);
   if (/@import|url\(\s*["']?(?:https?:)?\/\//i.test(t)) fail(`${f} 有 @import 或外部 url()`);
@@ -121,7 +151,7 @@ for (const [p, h] of pages) for (const m of h.matchAll(/<script>([\s\S]*?)<\/scr
 const siteCss = read('assets/site.css');
 if (!/line-break:\s*strict/.test(siteCss) || !/text-wrap:\s*pretty/.test(siteCss) || !/font:\s*17px\/1\.8/.test(siteCss) || !/tabular-nums/.test(siteCss)) fail('site.css 缺 17px/1.8、line-break:strict、text-wrap:pretty 或 tabular-nums');
 if (!/prefers-color-scheme:\s*dark\)\s*\{\s*:root:not\(\[data-theme="light"\]\)/.test(siteCss) || !/:root\[data-theme="dark"\]/.test(siteCss)) fail('site.css 缺深色模式的兩處選擇器');
-ok('b');
+ok('b', cfBeaconToken ? `統計碼已啟用，${beaconPages} 頁（首頁＋e/）` : '統計碼未啟用（cfBeaconToken 為空）');
 
 /* ---------- (c) 待專業審核 ---------- */
 section = 'c';
