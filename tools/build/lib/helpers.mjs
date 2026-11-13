@@ -14,7 +14,8 @@ export const AI_NOTE = '本站條目由 Claude Code（AI）協助蒐集與撰寫
 // Cloudflare Web Analytics（無 cookie、不收個資）token。預設空字串＝建置時不輸出任何統計碼。
 // 拿到 token 後以環境變數 CF_BEACON_TOKEN 傳入建置（32 位英數字）；只有首頁 index.html 與 e/ 條目頁會輸出官方 snippet（見 layout.mjs 的 beacon 選項）。
 // 環境變數 CF_BEACON_TOKEN 可臨時覆蓋（測試用）。verify-site.mjs 只放行這一個完全相同格式的 script 標籤。
-export const cfBeaconToken = (process.env.CF_BEACON_TOKEN ?? '').trim();
+// 2026-11-13 建立：Cloudflare Web Analytics 站台 naive000.github.io（帳號 goodnaive）。site token 本就公開在頁面原始碼，不是機密。
+export const cfBeaconToken = (process.env.CF_BEACON_TOKEN ?? 'f197a9374988454c81b1cb3d6310123e').trim();
 if (cfBeaconToken && !/^[A-Za-z0-9]{16,64}$/.test(cfBeaconToken)) throw new Error('cfBeaconToken 格式不正確（只能是 16–64 位英數字）');
 /** 官方 snippet；token 為空回傳空字串。verify-site.mjs 依同一格式驗證。 */
 export const beaconSnippet = () => cfBeaconToken
